@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class LevelPlanetGenerator : MonoBehaviour
 {
-    [SerializeField] private LevelData levelData;
-    [SerializeField] private SpriteRenderer[] planetPrefabs;
+    [SerializeField] private PlanetInput planetInput;
 
-    private List<SpriteRenderer> planets;
+    [SerializeField] private LevelData levelData;
+    [SerializeField] private PlanetFacade[] planetPrefabs;
+
+    private List<PlanetFacade> planets;
 
     private Bounds screenBounds;
 
@@ -15,6 +17,8 @@ public class LevelPlanetGenerator : MonoBehaviour
     {
         InitBounds();
         SpawnPlanets();
+
+        planetInput.SetPlanets(planets);
     }
 
     private void InitBounds()
@@ -25,11 +29,11 @@ public class LevelPlanetGenerator : MonoBehaviour
     private void SpawnPlanets()
     {
         int count = levelData.PlayerPlanetCount + levelData.PlayerPlanetCount + levelData.EnemyPlanetCount;
-        planets = new List<SpriteRenderer>(count);
+        planets = new List<PlanetFacade>(count);
 
         for (int i = 0; i < count; i++)
         {
-            SpriteRenderer planet = Instantiate(planetPrefabs[Random.Range(0, planetPrefabs.Length)], transform);
+            PlanetFacade planet = Instantiate(planetPrefabs[Random.Range(0, planetPrefabs.Length)], transform);
 
             if (PlacePlanet(planet))
             {
@@ -42,10 +46,10 @@ public class LevelPlanetGenerator : MonoBehaviour
         }
     }
 
-    private bool PlacePlanet(SpriteRenderer planetSpriteRenderer, int tryCount = 5)
+    private bool PlacePlanet(PlanetFacade planetFacade, int tryCount = 5)
     {
         Vector3 pos = Vector3.zero;
-        float planetRadius = planetSpriteRenderer.bounds.size.x;
+        float planetRadius = planetFacade.PlanetRadius;
 
         for (int i = 0; i < tryCount; i++)
         {
@@ -55,7 +59,7 @@ public class LevelPlanetGenerator : MonoBehaviour
 
             if (CheckPlanetCollusion(pos, planetRadius))
             {
-                planetSpriteRenderer.transform.position = pos;
+                planetFacade.transform.position = pos;
                 return true;
             }    
         }
@@ -67,7 +71,7 @@ public class LevelPlanetGenerator : MonoBehaviour
     {
         for (int i = 0; i < planets.Count; i++)
         {
-            if (radius + planets[i].bounds.size.x > (pos - (Vector2)planets[i].transform.position).magnitude)
+            if (radius + planets[i].PlanetRadius > (pos - (Vector2)planets[i].transform.position).magnitude)
             {
                 return false;
             }

@@ -17,7 +17,7 @@ public class ShipMovement : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    public void MoveTo(PlanetShipHandler planet, Action onWaypointReached = null)
+    public void MoveTo(PlanetFacade planet, Action onWaypointReached = null)
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.SetDestination(planet.transform.position);

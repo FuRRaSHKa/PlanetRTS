@@ -216,6 +216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089064735}
   - component: {fileID: 1089064736}
+  - component: {fileID: 1089064737}
   m_Layer: 0
   m_Name: PlanetSpawner
   m_TagString: Untagged
@@ -249,6 +250,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30222846270d3224baa911cd6647c37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planetInput: {fileID: 1089064737}
   levelData: {fileID: 11400000, guid: efcb71c72c6ca49499b438403fd99ee2, type: 2}
   planetPrefabs:
-  - {fileID: 8128429547117505171, guid: cddafeaf31be8e541a2091dbe96e69c3, type: 3}
+  - {fileID: 4381718366368463007, guid: cddafeaf31be8e541a2091dbe96e69c3, type: 3}
+--- !u!114 &1089064737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089064734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71107c2c864dc34299c6a186bb1c9cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
