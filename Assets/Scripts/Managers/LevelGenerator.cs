@@ -39,6 +39,7 @@ public class LevelGenerator : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             PlanetFacade planet = Instantiate(planetPrefabs[Random.Range(0, planetPrefabs.Length)], transform);
+            planet.Init(i);
 
             if (PlacePlanet(planet))
             {

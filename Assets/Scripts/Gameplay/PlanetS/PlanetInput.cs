@@ -20,17 +20,17 @@ public class PlanetInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 pos = Input.mousePosition;
+            pos.z = 10;
             CheckTouch(cam.ScreenToWorldPoint(pos));
         }
     }
 
-    private void CheckTouch(Vector2 pos)
+    private void CheckTouch(Vector3 pos)
     {
         for (int i = 0; i < planetFacades.Count; i++)
         {
             if (!planetFacades[i].CheckPosCollusion(pos))
             {
-                ResetChoose();
                 continue;
             }
 
@@ -45,6 +45,8 @@ public class PlanetInput : MonoBehaviour
             ResetChoose();
             return;
         }
+
+        ResetChoose();
     }
 
     private void ResetChoose()
@@ -53,6 +55,7 @@ public class PlanetInput : MonoBehaviour
         {
             return;
         }
+
         planetFacades[chosenPlanetId].ChoosePlanet(false);
         chosenPlanetId = -1;
     }

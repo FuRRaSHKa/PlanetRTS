@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ff8228e1e42be4fab09510a24679f8, type: 3}
   m_Name: ShipColorData
   m_EditorClassIdentifier: 
-  playerShipColor: {r: 0, g: 1, b: 0.84300804, a: 0}
-  enemyShipColor: {r: 1, g: 0.53020316, b: 0, a: 0}
+  playerShipColor: {r: 0, g: 1, b: 0.84300804, a: 1}
+  enemyShipColor: {r: 1, g: 0.53020316, b: 0, a: 1}
