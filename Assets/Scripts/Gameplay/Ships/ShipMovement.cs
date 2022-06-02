@@ -12,7 +12,9 @@ public class ShipMovement : MonoBehaviour
     private PlanetFacade targetPlanet;
     private ShipDataHandler shipDataHandler;
 
-    public int PlanetId => targetPlanet.PlanetId; 
+    private int planetId = -1;
+
+    public int PlanetId => planetId; 
 
     private void Start()
     {
@@ -23,11 +25,13 @@ public class ShipMovement : MonoBehaviour
     public void MoveToPlanet(PlanetFacade planet)
     {
         navMeshAgent.isStopped = false;
+        planetId = -1; 
         navMeshAgent.SetDestination(planet.transform.position);
     }
 
     private void ReachedPlanet()
     {
+        planetId = targetPlanet.PlanetId;
         targetPlanet.AddShip(shipDataHandler.CurrentShipSide);
     }
 

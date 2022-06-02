@@ -41,7 +41,7 @@ public class PlanetInput : MonoBehaviour
                 return;
             }
 
-            planetFacades[i].SendShips(planetFacades[i]);
+            ShipHandler.Instance.SendPlayerShips(planetFacades[chosenPlanetId].PlanetId, planetFacades[i]);
             ResetChoose();
             return;
         }
