@@ -31,8 +31,12 @@ public class ShipMovement : MonoBehaviour
         planetId = -1;
         isMoving = true;
 
+        Vector3 pos = UnityEngine.Random.insideUnitCircle.normalized / 3;
+        pos.z = pos.y;
+        pos.y = 0;
+
         targetPlanet = planet;
-        targetPos = planet.transform.position;
+        targetPos = planet.transform.position + pos;
         targetPos.y = transform.position.y;
 
         navMeshAgent.SetDestination(targetPos);   

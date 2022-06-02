@@ -48,7 +48,7 @@ public class ShipHandler : MonoBehaviour
             ShipFacade ship = shipPool.SpawnShip().GetComponent<ShipFacade>();
             ship.Init(shipSide, planetFacade);
             
-            Vector3 pos = Random.insideUnitCircle;
+            Vector3 pos = Random.insideUnitCircle.normalized;
             pos.z = pos.y;
             pos.y = 0;
             ship.transform.position = planetFacade.transform.position + pos;

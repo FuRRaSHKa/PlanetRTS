@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a696c0748b35600468443fe77e136016, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  playerPlanetCount: 1
+  playerPlanetCount: 20
   enemyPlanetCount: 2
-  freePlanetCount: 1
+  freePlanetCount: 20
