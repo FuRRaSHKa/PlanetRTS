@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 6000581889420203107}
   - component: {fileID: 6000581889420203109}
   - component: {fileID: 6000581889420203106}
+  - component: {fileID: 8262731428195050101}
+  - component: {fileID: 4193706105692416015}
+  - component: {fileID: 4087957083341863148}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -68,6 +71,49 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 7
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8262731428195050101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000581889420203104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3bdaf2323810247b1fabf5f053161a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipDataHandler: {fileID: 4193706105692416015}
+  shipMovement: {fileID: 6000581889420203109}
+--- !u!114 &4193706105692416015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000581889420203104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f85794b3e7a1a46b0cc26a2047c511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipData: {fileID: 11400000, guid: a9f3da87b6103fc4d8a748ee7ebf89c2, type: 2}
+  shipColoring: {fileID: 4087957083341863148}
+--- !u!114 &4087957083341863148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000581889420203104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af74536c57f4a8549916161f6ea4067c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipColor: {fileID: 11400000, guid: 70e610ece50d8e44d9420c8d5ed84c94, type: 2}
+  spriteRenderer: {fileID: 6000581890948427859}
+  trailRenderer: {fileID: 6000581890948427858}
 --- !u!1 &6000581890948427857
 GameObject:
   m_ObjectHideFlags: 0

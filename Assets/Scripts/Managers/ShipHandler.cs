@@ -9,8 +9,8 @@ public class ShipHandler : MonoBehaviour
 
     [SerializeField] private ShipPool shipPool;
 
-    private List<ShipFacade> playerShips;
-    private List<ShipFacade> enemyShips;
+    private List<ShipFacade> playerShips = new List<ShipFacade>();
+    private List<ShipFacade> enemyShips = new List<ShipFacade>();
 
     private void Awake()
     {
@@ -42,11 +42,16 @@ public class ShipHandler : MonoBehaviour
     }
 
     public void IncreaseShipCount(PlanetFacade planetFacade, int shipCount, ShipSide shipSide)
-    {
+    {     
         for (int i = 0; i < shipCount; i++)
         {
             ShipFacade ship = shipPool.SpawnShip().GetComponent<ShipFacade>();
-            ship.Init(shipSide, planetFacade); 
+            ship.Init(shipSide, planetFacade);
+            
+            Vector3 pos = Random.insideUnitCircle;
+            pos.z = pos.y;
+            pos.y = 0;
+            ship.transform.position = planetFacade.transform.position + pos;
 
             if (shipSide == ShipSide.Player)
             {

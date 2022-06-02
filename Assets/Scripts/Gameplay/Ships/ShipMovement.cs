@@ -14,9 +14,11 @@ public class ShipMovement : MonoBehaviour
 
     private int planetId = -1;
 
-    public int PlanetId => planetId; 
+    private Vector3 targetPos;
 
-    private void Start()
+    public int PlanetId => planetId;
+
+    private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         shipDataHandler = GetComponent<ShipDataHandler>();
@@ -25,8 +27,12 @@ public class ShipMovement : MonoBehaviour
     public void MoveToPlanet(PlanetFacade planet)
     {
         navMeshAgent.isStopped = false;
-        planetId = -1; 
-        navMeshAgent.SetDestination(planet.transform.position);
+        planetId = -1;
+
+        targetPlanet = planet;
+        targetPos = planet.transform.position;
+        targetPos.y = transform.position.y;
+        navMeshAgent.SetDestination(targetPos);
     }
 
     private void ReachedPlanet()
