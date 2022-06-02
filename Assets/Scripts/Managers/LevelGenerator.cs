@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelPlanetGenerator : MonoBehaviour
+public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private PlanetInput planetInput;
 
@@ -17,6 +17,11 @@ public class LevelPlanetGenerator : MonoBehaviour
     {
         InitBounds();
         SpawnPlanets();
+    }
+
+    private void Start()
+    {
+        FillPlanetWithShips();
 
         planetInput.SetPlanets(planets);
     }
@@ -77,5 +82,11 @@ public class LevelPlanetGenerator : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void FillPlanetWithShips()
+    {
+        ShipHandler.Instance.IncreaseShipCount(planets[0], levelData.PlayerPlanetCount, ShipSide.Player);
+        ShipHandler.Instance.IncreaseShipCount(planets[1], levelData.EnemyPlanetCount, ShipSide.Enemy);
     }
 }

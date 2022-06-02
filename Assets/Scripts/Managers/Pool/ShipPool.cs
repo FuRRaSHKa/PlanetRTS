@@ -7,11 +7,11 @@ public class ShipPool : MonoBehaviour
 {
     [SerializeField] private GameObject shipPrefab;
 
-    [SerializeField] private int startCount = 300;
+    [SerializeField] private int startCount = 10;
 
     private List<GameObject> ships;
 
-    private void Start()
+    private void Awake()
     {
         ships = new List<GameObject>(startCount);
         FillList();
@@ -31,7 +31,7 @@ public class ShipPool : MonoBehaviour
 
     public GameObject AddShip()
     {
-        GameObject ship = Instantiate(gameObject, transform);
+        GameObject ship = Instantiate(shipPrefab, transform);
         ships.Add(ship);
         return ship;
     }
