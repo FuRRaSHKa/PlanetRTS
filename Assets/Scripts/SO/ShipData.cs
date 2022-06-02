@@ -5,4 +5,6 @@ using UnityEngine;
 public class ShipData : ScriptableObject
 {
     [SerializeField] private float shipSpeed;
+
+    public float ShipSpeed => shipSpeed;
 }

@@ -23,7 +23,7 @@ public class LevelPlanetGenerator : MonoBehaviour
 
     private void InitBounds()
     {
-        screenBounds = new Bounds(transform.position, new Vector3(10, 10, 1));
+        screenBounds = new Bounds(transform.position, new Vector3(10, 10, 10));
     }
 
     private void SpawnPlanets()
@@ -54,12 +54,11 @@ public class LevelPlanetGenerator : MonoBehaviour
         for (int i = 0; i < tryCount; i++)
         {
             pos.x = Random.Range(screenBounds.min.x, screenBounds.max.x);
-            pos.y = Random.Range(screenBounds.min.y, screenBounds.max.y);
-            pos.z = 0;
+            pos.z = Random.Range(screenBounds.min.z, screenBounds.max.z);
 
             if (CheckPlanetCollusion(pos, planetRadius))
             {
-                planetFacade.transform.position = pos;
+                planetFacade.transform.localPosition = pos;
                 return true;
             }    
         }
@@ -67,11 +66,11 @@ public class LevelPlanetGenerator : MonoBehaviour
         return false;
     }
 
-    private bool CheckPlanetCollusion(Vector2 pos, float radius)
+    private bool CheckPlanetCollusion(Vector3 pos, float radius)
     {
         for (int i = 0; i < planets.Count; i++)
         {
-            if (radius + planets[i].PlanetRadius > (pos - (Vector2)planets[i].transform.position).magnitude)
+            if (radius + planets[i].PlanetRadius > (pos - planets[i].transform.localPosition).magnitude)
             {
                 return false;
             }
