@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb25228d434c35468a3b97887590024, type: 3}
   m_Name: ShipData
   m_EditorClassIdentifier: 
-  shipSpeed: 1
+  shipSpeed: 3

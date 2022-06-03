@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.08
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.026666665
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -349,7 +349,7 @@ Camera:
   far clip plane: 30
   field of view: 60
   orthographic: 1
-  orthographic size: 9.620147
+  orthographic size: 5.24
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

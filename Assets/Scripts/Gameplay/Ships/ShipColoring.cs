@@ -17,5 +17,12 @@ public class ShipColoring : MonoBehaviour
         Material material = trailRenderer.material;
         material.color = color;
         trailRenderer.material = material;
+
+        trailRenderer.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        trailRenderer.enabled = false;
     }
 }

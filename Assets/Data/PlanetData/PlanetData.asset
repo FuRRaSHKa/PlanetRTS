@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a696c0748b35600468443fe77e136016, type: 3}
-  m_Name: LevelData
+  m_Script: {fileID: 11500000, guid: b5baa06922c74f545a4998a853b3b5fe, type: 3}
+  m_Name: PlanetData
   m_EditorClassIdentifier: 
-  playerPlanetCount: 5
-  enemyPlanetCount: 2
-  freePlanetCount: 5
-  playerShipsCount: 30
-  enemyShipsCount: 30
+  shipsGenerationInterval: 5
+  shipGenerationCount: 3
+  shipContestInterval: 1

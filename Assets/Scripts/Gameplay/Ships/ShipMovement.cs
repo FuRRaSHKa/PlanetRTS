@@ -13,7 +13,7 @@ public class ShipMovement : MonoBehaviour
     private ShipDataHandler shipDataHandler;
 
     private int planetId = -1;
-   
+
     private Vector3 targetPos;
 
     private bool isMoving = false;
@@ -35,11 +35,13 @@ public class ShipMovement : MonoBehaviour
         pos.z = pos.y;
         pos.y = 0;
 
+        LeavePlanet();
         targetPlanet = planet;
         targetPos = planet.transform.position + pos;
         targetPos.y = transform.position.y;
 
-        navMeshAgent.SetDestination(targetPos);   
+        navMeshAgent.enabled = true;
+        navMeshAgent.SetDestination(targetPos);
     }
 
     private void ReachedPlanet()
@@ -54,11 +56,23 @@ public class ShipMovement : MonoBehaviour
         if (!isMoving)
         {
             return;
-        }    
+        }
 
         if ((transform.position - targetPos).magnitude < threshold)
         {
             ReachedPlanet();
         }
+    }
+
+    private void LeavePlanet()
+    {
+        targetPlanet?.RemoveShip(shipDataHandler.CurrentShipSide);
+        targetPlanet = null;
+    }
+
+    private void OnDisable()
+    {
+        LeavePlanet();
+        navMeshAgent.enabled = false; 
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlanetFacade : MonoBehaviour
 {
-    private PlanetShipInteractor planetShipCounter;
     private PlanetCursor planetCursor;
     private SpriteRenderer spriteRenderer;
 
@@ -15,9 +14,11 @@ public class PlanetFacade : MonoBehaviour
 
     public int PlanetId => planetId;
 
+    public event Action<ShipSide> OnShipComing;
+    public event Action<ShipSide> OnShipLeaving;
+
     private void Awake()
     {
-        planetShipCounter = GetComponent<PlanetShipInteractor>();
         planetCursor = GetComponent<PlanetCursor>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -47,11 +48,11 @@ public class PlanetFacade : MonoBehaviour
 
     public void AddShip(ShipSide shipSide)
     {
-        planetShipCounter.AddShip(shipSide);
+        OnShipComing?.Invoke(shipSide);
     }
 
     public void RemoveShip(ShipSide shipSide)
     {
-        planetShipCounter.RemoveShip(shipSide);
+        OnShipLeaving.Invoke(shipSide);
     }
 }

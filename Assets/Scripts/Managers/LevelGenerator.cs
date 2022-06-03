@@ -87,7 +87,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void FillPlanetWithShips()
     {
-        ShipHandler.Instance.IncreaseShipCount(planets[0], levelData.PlayerPlanetCount, ShipSide.Player);
-        ShipHandler.Instance.IncreaseShipCount(planets[1], levelData.EnemyPlanetCount, ShipSide.Enemy);
+        ShipHandler.Instance.IncreaseShipCount(planets[0], levelData.PlayerShipsCount, ShipSide.Player);
+        ShipHandler.Instance.IncreaseShipCount(planets[1], levelData.EnemyShipsCount, ShipSide.Enemy);
     }
 }

@@ -19,13 +19,13 @@ public class ShipPool : MonoBehaviour
 
     public GameObject SpawnShip()
     {
-        GameObject ship = ships.DefaultIfEmpty(null).First(f => !f.activeSelf);
+        GameObject ship = ships.DefaultIfEmpty(null).FirstOrDefault(f => !f.activeSelf);
 
         if (ship == null)
         {
             ship = AddShip();
         }
-
+        
         ship.SetActive(true);
         return ship;
     }
@@ -33,6 +33,7 @@ public class ShipPool : MonoBehaviour
     public GameObject AddShip()
     {
         GameObject ship = Instantiate(shipPrefab, transform);
+        ship.SetActive(false);
         ships.Add(ship);
         return ship;
     }

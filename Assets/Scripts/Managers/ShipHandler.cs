@@ -24,10 +24,10 @@ public class ShipHandler : MonoBehaviour
 
     public bool TryDuelShips(int planetID)
     {
-        ShipFacade playerShip = playerShips.DefaultIfEmpty(null).First(f => f.IsWithPlanet(planetID));
-        ShipFacade enemyShip = enemyShips.DefaultIfEmpty(null).First(f => f.IsWithPlanet(planetID));
+        ShipFacade playerShip = playerShips.DefaultIfEmpty(null).FirstOrDefault(f => f.IsWithPlanet(planetID));
+        ShipFacade enemyShip = enemyShips.DefaultIfEmpty(null).FirstOrDefault(f => f.IsWithPlanet(planetID));
 
-        if (playerShip != null && enemyShip != null)
+        if (playerShip == null || enemyShip == null)
         {
             return false;
         }
@@ -35,22 +35,22 @@ public class ShipHandler : MonoBehaviour
         enemyShips.Remove(enemyShip);
         playerShips.Remove(playerShip);
 
-        playerShip.enabled = false;
-        enemyShip.enabled = false;
+        playerShip.gameObject.SetActive(false);
+        enemyShip.gameObject.SetActive(false);
 
         return true;
     }
 
     public void IncreaseShipCount(PlanetFacade planetFacade, int shipCount, ShipSide shipSide)
-    {     
+    {
         for (int i = 0; i < shipCount; i++)
         {
             ShipFacade ship = shipPool.SpawnShip().GetComponent<ShipFacade>();
-            ship.Init(shipSide, planetFacade);
-            
+
             Vector3 pos = Random.insideUnitCircle.normalized;
             pos.z = pos.y;
             pos.y = 0;
+
             ship.transform.position = planetFacade.transform.position + pos;
 
             if (shipSide == ShipSide.Player)
@@ -61,6 +61,8 @@ public class ShipHandler : MonoBehaviour
             {
                 enemyShips.Add(ship);
             }
+
+            ship.Init(shipSide, planetFacade);
         }
     }
 
