@@ -8,9 +8,9 @@ public class PlanetShipUi : MonoBehaviour
 {
     [SerializeField] private ShipColorData shipColorData;
 
-    [SerializeField] private TextMeshPro mainText;
-    [SerializeField] private TextMeshPro enemyText;
-    [SerializeField] private TextMeshPro playerText;
+    [SerializeField] private TextMeshProUGUI mainText;
+    [SerializeField] private TextMeshProUGUI enemyText;
+    [SerializeField] private TextMeshProUGUI playerText;
 
     [SerializeField] private Image enemyProgressImage;
     [SerializeField] private Image playerProgressImage;
@@ -25,6 +25,8 @@ public class PlanetShipUi : MonoBehaviour
         planetFacafe.OnShipComing += AddShip;
         planetFacafe.OnShipLeaving += RemoveShip;
 
+        enemyText.color = shipColorData.GetColor(ShipSide.Enemy);
+        playerText.color = shipColorData.GetColor(ShipSide.Player);
         DisableUI();
     }
 
@@ -56,12 +58,19 @@ public class PlanetShipUi : MonoBehaviour
 
     private void UpdateUI()
     {
+        DisableUI();
+        if (playerShipCount == 0 && enemyShipCount == 0)
+        {
+            return;
+        }
+
         if (playerShipCount != 0 && enemyShipCount != 0)
         {
             UseContestUI();
-        }
+            return;
+        }   
 
-        UseContestUI();
+        UseCaptureUI();
     }
 
     private void FixedUpdate()
@@ -79,20 +88,20 @@ public class PlanetShipUi : MonoBehaviour
         enemyText.text = enemyShipCount.ToString();
         playerText.text = playerShipCount.ToString();
 
-        int allships = enemyShipCount + playerShipCount;
+        float allships = enemyShipCount + playerShipCount;
         enemyProgressImage.fillAmount = enemyShipCount / allships;
         playerProgressImage.fillAmount = playerShipCount / allships;
     }
 
     private void UseCaptureUI()
     {
-        mainText.enabled = false;
+        mainText.enabled = true;
         mainText.text = Mathf.Max(enemyShipCount, playerShipCount).ToString();
+        mainText.color = shipColorData.GetColor(enemyShipCount > playerShipCount ? ShipSide.Enemy : ShipSide.Player);
     }
 
     private void DisableUI()
     {
-
         mainText.enabled = false;
         enemyText.enabled = false;
         playerText.enabled = false;
