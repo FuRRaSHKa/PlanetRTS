@@ -53,6 +53,12 @@ public class PlanetFacade : MonoBehaviour
 
     public void RemoveShip(ShipSide shipSide)
     {
-        OnShipLeaving.Invoke(shipSide);
+        OnShipLeaving?.Invoke(shipSide);
+    }
+
+    private void OnDisable()
+    {
+        OnShipComing = null;
+        OnShipLeaving = null;
     }
 }

@@ -39,7 +39,6 @@ public class LevelGenerator : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             PlanetFacade planet = Instantiate(planetPrefabs[Random.Range(0, planetPrefabs.Length)], transform);
-            planet.Init(i);
 
             if (PlacePlanet(planet))
             {
@@ -47,8 +46,10 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                Destroy(planet);
+                Destroy(planet.gameObject);
             }
+
+            planet.Init(i);
         }
     }
 

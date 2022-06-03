@@ -16,4 +16,4 @@ MonoBehaviour:
   enemyPlanetCount: 2
   freePlanetCount: 5
   playerShipsCount: 30
-  enemyShipsCount: 30
+  enemyShipsCount: 15

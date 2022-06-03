@@ -51,6 +51,8 @@ public class PlanetStateMachine : MonoBehaviour
             enemyShipCount--;
             enemyShipCount = enemyShipCount < 0 ? 0 : enemyShipCount;
         }
+
+        CheckState();
     }
 
     public void AddShip(ShipSide shipSide)
@@ -63,6 +65,8 @@ public class PlanetStateMachine : MonoBehaviour
         {
             enemyShipCount++;
         }
+
+        CheckState();
     }
 
     private void CheckState()
@@ -94,11 +98,6 @@ public class PlanetStateMachine : MonoBehaviour
             currentStateName = nameNew;
             ChangeState();
         }
-    }
-
-    private void FixedUpdate()
-    {
-        CheckState();
     }
 
     private void ChangeState()

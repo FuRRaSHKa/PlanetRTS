@@ -42,6 +42,8 @@ public class PlanetShipUi : MonoBehaviour
             enemyShipCount--;
             enemyShipCount = enemyShipCount < 0 ? 0 : enemyShipCount;
         }
+
+        UpdateUI();
     }
 
     public void AddShip(ShipSide shipSide)
@@ -54,6 +56,8 @@ public class PlanetShipUi : MonoBehaviour
         {
             enemyShipCount++;
         }
+
+        UpdateUI();
     }
 
     private void UpdateUI()
@@ -71,11 +75,6 @@ public class PlanetShipUi : MonoBehaviour
         }   
 
         UseCaptureUI();
-    }
-
-    private void FixedUpdate()
-    {
-        UpdateUI();
     }
 
     private void UseContestUI()

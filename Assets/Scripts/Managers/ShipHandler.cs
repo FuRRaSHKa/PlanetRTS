@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class ShipHandler : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ShipHandler : MonoBehaviour
 
     private List<ShipFacade> playerShips = new List<ShipFacade>();
     private List<ShipFacade> enemyShips = new List<ShipFacade>();
+
+    public event Action<float> OnProgressChange; 
 
     private void Awake()
     {
@@ -35,6 +38,7 @@ public class ShipHandler : MonoBehaviour
         enemyShips.Remove(enemyShip);
         playerShips.Remove(playerShip);
 
+        SendProgress();
         playerShip.gameObject.SetActive(false);
         enemyShip.gameObject.SetActive(false);
 
@@ -47,7 +51,7 @@ public class ShipHandler : MonoBehaviour
         {
             ShipFacade ship = shipPool.SpawnShip().GetComponent<ShipFacade>();
 
-            Vector3 pos = Random.insideUnitCircle.normalized;
+            Vector3 pos = UnityEngine.Random.insideUnitCircle.normalized;
             pos.z = pos.y;
             pos.y = 0;
 
@@ -62,8 +66,14 @@ public class ShipHandler : MonoBehaviour
                 enemyShips.Add(ship);
             }
 
+            SendProgress();
             ship.Init(shipSide, planetFacade);
         }
+    }
+
+    private void SendProgress()
+    {
+        OnProgressChange?.Invoke(playerShips.Count / (float)(playerShips.Count + enemyShips.Count));
     }
 
     public void SendPlayerShips(int planetID, PlanetFacade planetFacade)
@@ -75,4 +85,5 @@ public class ShipHandler : MonoBehaviour
             ship.SendTo(planetFacade);
         }
     }
+
 }
