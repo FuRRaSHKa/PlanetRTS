@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlanetInput : MonoBehaviour
 {
-    [SerializeField] private PlayerCursor playerCursor;
-    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private PlayerCursors playerCursor;
 
     private List<PlanetFacade> planetFacades;
 
@@ -21,6 +20,8 @@ public class PlanetInput : MonoBehaviour
         cam = Camera.main;
     }
 
+    #region ScreenInput
+
     public void MousePos(InputAction.CallbackContext context)
     {
         camPos = context.ReadValue<Vector2>();
@@ -34,7 +35,6 @@ public class PlanetInput : MonoBehaviour
             pos.z = 10;
             CheckTouch(cam.ScreenToWorldPoint(pos));
         }
-
     }
 
     private void CheckTouch(Vector3 pos)
@@ -49,7 +49,8 @@ public class PlanetInput : MonoBehaviour
             if (chosenPlanetId == -1)
             {
                 chosenPlanetId = i;
-                planetFacades[chosenPlanetId].ChoosePlanet(true);
+                playerCursor.SetActiveFirstCursor(true);
+                playerCursor.PlaceFirstCursor(planetFacades[chosenPlanetId].transform.position);
                 return;
             }
 
@@ -61,6 +62,13 @@ public class PlanetInput : MonoBehaviour
         ResetChoose();
     }
 
+    #endregion ScreenInput
+
+    public void PlanetNavigateInput(InputAction.CallbackContext context)
+    {
+        
+    }
+
     private void ResetChoose()
     {
         if (chosenPlanetId == -1)
@@ -68,6 +76,8 @@ public class PlanetInput : MonoBehaviour
             return;
         }
 
+        playerCursor.SetActiveFirstCursor(false);
+        playerCursor.SetActiveSecondCursor(false);
         planetFacades[chosenPlanetId].ChoosePlanet(false);
         chosenPlanetId = -1;
     }

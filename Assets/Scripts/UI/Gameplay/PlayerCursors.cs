@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCursor : MonoBehaviour
+public class PlayerCursors : MonoBehaviour
 {
+    [SerializeField] private GameObject firstCursor;
+    [SerializeField] private GameObject secondCursor;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float cursorSpeed;
 
@@ -21,9 +23,31 @@ public class PlayerCursor : MonoBehaviour
     private void Start()
     {
         lineRenderer.enabled = false;
+        firstCursor.SetActive(false);
+        secondCursor.SetActive(false);
     }
 
-    public void MoveCursosrTo(Vector3 targetPosition, Action callback = null)
+    public void PlaceFirstCursor(Vector3 pos)
+    {
+        firstCursor.transform.position = pos;
+    }
+
+    public void PlaceSecondCursor(Vector3 pos)
+    {
+        secondCursor.transform.position = pos;
+    }
+
+    public void SetActiveFirstCursor(bool value)
+    {
+        firstCursor.SetActive(value);
+    }
+
+    public void SetActiveSecondCursor(bool value)
+    {
+        secondCursor.SetActive(value);
+    }
+
+    public void MoveLineTo(Vector3 targetPosition, Action callback = null)
     {
         moveDuration = (targetPosition - currentPosition).magnitude / cursorSpeed;
         curTime = 0;

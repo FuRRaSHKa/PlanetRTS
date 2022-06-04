@@ -16,8 +16,8 @@ public class PlanetStateMachine : MonoBehaviour
 {
     [SerializeField] private PlanetData planetData;
 
-    [SerializeField] private int playerShipCount;
-    [SerializeField] private int enemyShipCount;
+    private int playerShipCount;
+    private int enemyShipCount;
 
     private PlanetFacade planetFacade;
 

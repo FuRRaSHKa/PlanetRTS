@@ -14,8 +14,8 @@ public class ShipHandler : MonoBehaviour
     private List<ShipFacade> playerShips = new List<ShipFacade>();
     private List<ShipFacade> enemyShips = new List<ShipFacade>();
 
-    [SerializeField] private int playershipCount;
-    [SerializeField] private int allshipCount;
+    private int playershipCount;
+    private int allshipCount;
 
     public event Action<float> OnProgressChange;
 
@@ -46,7 +46,7 @@ public class ShipHandler : MonoBehaviour
         }
 
         if (playerShip.GetDamage(1))
-        {         
+        {
             playerShip.gameObject.SetActive(false);
             playerShips.Remove(playerShip);
         }
@@ -71,12 +71,12 @@ public class ShipHandler : MonoBehaviour
 
         if (count < levelData.MaxShipsPerPlanet)
         {
-            SpawnNewShips(planetFacade, Mathf.Min((levelData.MaxShipsPerPlanet - count), shipCount), shipSide);
+            SpawnNewShips(planetFacade, shipCount, shipSide);
         }
-        
-        if (count + shipCount >= levelData.MaxShipsPerPlanet)
+
+        if (count >= levelData.MaxShipsPerPlanet)
         {
-            IncreaseShipsWeight(planetFacade, count + shipCount - levelData.MaxShipsPerPlanet, shipSide);
+            IncreaseShipsWeight(planetFacade, shipCount, shipSide);
         }
 
         SendProgress();

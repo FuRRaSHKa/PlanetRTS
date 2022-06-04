@@ -90,7 +90,7 @@
                 {
                     "name": "Gamepad",
                     "id": "e96818cc-8484-420a-9268-a423eaf4a9a0",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -200,7 +200,7 @@
                 {
                     "name": "Joystick",
                     "id": "1616ad11-b695-4eed-abf2-f43523ca7c99",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -255,7 +255,7 @@
                 {
                     "name": "Keyboard",
                     "id": "a5c80c37-fbfd-4a08-b52d-887c3caf7a72",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
