@@ -1,28 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlanetInput : MonoBehaviour
 {
+    [SerializeField] private PlayerCursor playerCursor;
+    [SerializeField] private PlayerInput playerInput;
+
     private List<PlanetFacade> planetFacades;
 
     private int chosenPlanetId = -1;
 
     private Camera cam;
 
+    private Vector3 camPos;
+
     private void Start()
     {
         cam = Camera.main;
     }
 
-    private void Update()
+    public void MousePos(InputAction.CallbackContext context)
     {
-        if (Input.GetMouseButtonDown(0))
+        camPos = context.ReadValue<Vector2>();
+    }
+
+    public void ScreenInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            Vector3 pos = Input.mousePosition;
+            Vector3 pos = camPos;
             pos.z = 10;
             CheckTouch(cam.ScreenToWorldPoint(pos));
         }
+
     }
 
     private void CheckTouch(Vector3 pos)

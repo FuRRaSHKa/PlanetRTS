@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ShipData
   m_EditorClassIdentifier: 
   shipSpeed: 3
+  shipScaleMultiplier: 0.1

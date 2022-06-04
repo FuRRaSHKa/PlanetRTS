@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShipWeight : MonoBehaviour
 {
+    [SerializeField] private ShipData shipData;
     private int shipWeight = 1;
 
     public void InitShip()
@@ -15,7 +16,7 @@ public class ShipWeight : MonoBehaviour
     public void AddWeight(PlanetFacade planetFacade, ShipSide shipSide, int weight)
     {
         shipWeight += weight;
-        transform.localScale += new Vector3(1, 0, 1) * weight / 5;
+        transform.localScale += new Vector3(1, 0, 1) * weight * shipData.ShipScaleMultiplier;
         planetFacade.AddShip(shipSide, weight);
     }
 
@@ -23,7 +24,7 @@ public class ShipWeight : MonoBehaviour
     {
         shipWeight -= damage;
         planetFacade.RemoveShip(shipSide, damage);
-        transform.localScale -= new Vector3(1, 0, 1) * damage / 5;
+        transform.localScale -= new Vector3(1, 0, 1) * damage * shipData.ShipScaleMultiplier;
 
         return shipWeight <= 0;
     }

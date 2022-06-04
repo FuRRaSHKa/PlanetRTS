@@ -6,6 +6,8 @@ using UnityEngine;
 public class ShipData : ScriptableObject
 {
     [SerializeField] private float shipSpeed;
+    [SerializeField] private float shipScaleMultiplier;
 
     public float ShipSpeed => shipSpeed;
+    public float ShipScaleMultiplier => shipScaleMultiplier;
 }
