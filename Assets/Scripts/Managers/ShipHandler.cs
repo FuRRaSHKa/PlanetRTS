@@ -8,12 +8,16 @@ public class ShipHandler : MonoBehaviour
 {
     public static ShipHandler Instance;
 
+    [SerializeField] private LevelData levelData;
     [SerializeField] private ShipPool shipPool;
 
     private List<ShipFacade> playerShips = new List<ShipFacade>();
     private List<ShipFacade> enemyShips = new List<ShipFacade>();
 
-    public event Action<float> OnProgressChange; 
+    [SerializeField] private int playershipCount;
+    [SerializeField] private int allshipCount;
+
+    public event Action<float> OnProgressChange;
 
     private void Awake()
     {
@@ -35,17 +39,76 @@ public class ShipHandler : MonoBehaviour
             return false;
         }
 
-        enemyShips.Remove(enemyShip);
-        playerShips.Remove(playerShip);
+        if (enemyShip.GetDamage(1))
+        {
+            enemyShips.Remove(enemyShip);
+            enemyShip.gameObject.SetActive(false);
+        }
 
+        if (playerShip.GetDamage(1))
+        {         
+            playerShip.gameObject.SetActive(false);
+            playerShips.Remove(playerShip);
+        }
+
+        playershipCount -= 1;
+        allshipCount -= 2;
         SendProgress();
-        playerShip.gameObject.SetActive(false);
-        enemyShip.gameObject.SetActive(false);
-
         return true;
     }
 
     public void IncreaseShipCount(PlanetFacade planetFacade, int shipCount, ShipSide shipSide)
+    {
+        int count = 0;
+        if (shipSide == ShipSide.Player)
+        {
+            count = playerShips.Where(w => w.IsWithPlanet(planetFacade.PlanetId)).Sum(s => 1);
+        }
+        else
+        {
+            count = enemyShips.Where(w => w.IsWithPlanet(planetFacade.PlanetId)).Sum(s => 1);
+        }
+
+        if (count < levelData.MaxShipsPerPlanet)
+        {
+            SpawnNewShips(planetFacade, Mathf.Min((levelData.MaxShipsPerPlanet - count), shipCount), shipSide);
+        }
+        
+        if (count + shipCount >= levelData.MaxShipsPerPlanet)
+        {
+            IncreaseShipsWeight(planetFacade, count + shipCount - levelData.MaxShipsPerPlanet, shipSide);
+        }
+
+        SendProgress();
+    }
+
+    private void IncreaseShipsWeight(PlanetFacade planetFacade, int shipCount, ShipSide shipSide)
+    {
+        IEnumerable enumerable;
+        if (shipSide == ShipSide.Player)
+        {
+            enumerable = playerShips.Where(w => w.IsWithPlanet(planetFacade.PlanetId));
+            playershipCount += shipCount;
+        }
+        else
+        {
+            enumerable = enemyShips.Where(w => w.IsWithPlanet(planetFacade.PlanetId));
+        }
+
+        allshipCount += shipCount;
+        foreach (ShipFacade shipFacade in enumerable)
+        {
+            shipCount -= 1;
+            shipFacade.AddWeight(planetFacade, shipSide, 1);
+
+            if (shipCount <= 0)
+            {
+                return;
+            }
+        }
+    }
+
+    private void SpawnNewShips(PlanetFacade planetFacade, int shipCount, ShipSide shipSide)
     {
         for (int i = 0; i < shipCount; i++)
         {
@@ -53,12 +116,13 @@ public class ShipHandler : MonoBehaviour
 
             Vector3 pos = UnityEngine.Random.insideUnitCircle.normalized;
             pos.z = pos.y;
-            pos.y = 0;
-
-            ship.transform.position = planetFacade.transform.position + pos;
+            pos += planetFacade.transform.position;
+            pos.y = ship.transform.position.y;
+            ship.transform.position = pos;
 
             if (shipSide == ShipSide.Player)
             {
+                playershipCount++;
                 playerShips.Add(ship);
             }
             else
@@ -66,14 +130,14 @@ public class ShipHandler : MonoBehaviour
                 enemyShips.Add(ship);
             }
 
-            SendProgress();
+            allshipCount++;
             ship.Init(shipSide, planetFacade);
         }
     }
 
     private void SendProgress()
     {
-        OnProgressChange?.Invoke(playerShips.Count / (float)(playerShips.Count + enemyShips.Count));
+        OnProgressChange?.Invoke((float)playershipCount / allshipCount);
     }
 
     public void SendPlayerShips(int planetID, PlanetFacade planetFacade)
@@ -82,7 +146,7 @@ public class ShipHandler : MonoBehaviour
 
         foreach (ShipFacade ship in enumerator)
         {
-            ship.SendTo(planetFacade);
+            ship.SendToPlanet(planetFacade);
         }
     }
 

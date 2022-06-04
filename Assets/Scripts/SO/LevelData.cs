@@ -6,18 +6,16 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     [Header("Planet settings")]
-    [SerializeField] private int playerPlanetCount;
-    [SerializeField] private int enemyPlanetCount;
-    [SerializeField] private int freePlanetCount;
+    [SerializeField] private int planetCount;
+    [SerializeField] private int maxShipsPerPlanet;
 
     [Header("Ships settings")]
     [SerializeField] private int playerShipsCount;
     [SerializeField] private int enemyShipsCount;
 
-    public int PlayerPlanetCount => playerPlanetCount;
-    public int EnemyPlanetCount => enemyPlanetCount;
-    public int FreePlanetCount => freePlanetCount;
+    public int PlanetCount => planetCount;
     public int PlayerShipsCount => playerShipsCount;
     public int EnemyShipsCount => enemyShipsCount;
+    public int MaxShipsPerPlanet => maxShipsPerPlanet;
 
 }

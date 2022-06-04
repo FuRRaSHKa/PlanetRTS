@@ -33,7 +33,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void SpawnPlanets()
     {
-        int count = levelData.PlayerPlanetCount + levelData.PlayerPlanetCount + levelData.EnemyPlanetCount;
+        int count = levelData.PlanetCount;
         planets = new List<PlanetFacade>(count);
 
         for (int i = 0; i < count; i++)

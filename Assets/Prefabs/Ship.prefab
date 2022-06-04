@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 8262731428195050101}
   - component: {fileID: 4193706105692416015}
   - component: {fileID: 4087957083341863148}
+  - component: {fileID: 6987643143101992123}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -225,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipDataHandler: {fileID: 4193706105692416015}
   shipMovement: {fileID: 6000581889420203109}
+  shipWeight: {fileID: 6987643143101992123}
 --- !u!114 &4193706105692416015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +256,18 @@ MonoBehaviour:
   shipColor: {fileID: 11400000, guid: 70e610ece50d8e44d9420c8d5ed84c94, type: 2}
   spriteRenderer: {fileID: 6000581890948427859}
   trailRenderer: {fileID: 5081957892303777602}
+--- !u!114 &6987643143101992123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000581889420203104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2f91e487af1574baa33262f44f4671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6000581890948427857
 GameObject:
   m_ObjectHideFlags: 0

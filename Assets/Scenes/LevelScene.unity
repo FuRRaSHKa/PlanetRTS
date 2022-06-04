@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9e440f3edf15f4ebabcebbb1973c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelData: {fileID: 11400000, guid: efcb71c72c6ca49499b438403fd99ee2, type: 2}
   shipPool: {fileID: 325979597}
 --- !u!1 &330116228
 GameObject:

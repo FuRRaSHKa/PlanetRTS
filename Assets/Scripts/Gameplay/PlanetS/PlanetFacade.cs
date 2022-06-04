@@ -14,8 +14,8 @@ public class PlanetFacade : MonoBehaviour
 
     public int PlanetId => planetId;
 
-    public event Action<ShipSide> OnShipComing;
-    public event Action<ShipSide> OnShipLeaving;
+    public event Action<ShipSide, int> OnShipComing;
+    public event Action<ShipSide, int> OnShipLeaving;
 
     private void Awake()
     {
@@ -46,14 +46,14 @@ public class PlanetFacade : MonoBehaviour
         }
     }
 
-    public void AddShip(ShipSide shipSide)
+    public void AddShip(ShipSide shipSide, int count)
     {
-        OnShipComing?.Invoke(shipSide);
+        OnShipComing?.Invoke(shipSide, count);
     }
 
-    public void RemoveShip(ShipSide shipSide)
+    public void RemoveShip(ShipSide shipSide, int count)
     {
-        OnShipLeaving?.Invoke(shipSide);
+        OnShipLeaving?.Invoke(shipSide, count);
     }
 
     private void OnDisable()

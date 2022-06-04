@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ContestState : PlanetState
 {
-    private int planetId = -1;
+    private PlanetFacade planetFacade;
 
-    public ContestState(float updateInterval, int planetId, PlanetStateName planetStateName) : base(updateInterval, planetStateName) 
+    public ContestState(float updateInterval, PlanetFacade planetFacade, PlanetStateName planetStateName) : base(updateInterval, planetStateName) 
     {
-        this.planetId = planetId;
+        this.planetFacade = planetFacade;
     }
 
     public override void Update()
     {
-        ShipHandler.Instance.TryDuelShips(planetId);
+        ShipHandler.Instance.TryDuelShips(planetFacade.PlanetId);
     }
 }

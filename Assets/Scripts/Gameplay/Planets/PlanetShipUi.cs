@@ -30,31 +30,31 @@ public class PlanetShipUi : MonoBehaviour
         DisableUI();
     }
 
-    public void RemoveShip(ShipSide shipSide)
+    public void RemoveShip(ShipSide shipSide, int count)
     {
         if (shipSide == ShipSide.Player)
         {
-            playerShipCount--;
+            playerShipCount-= count;
             playerShipCount = playerShipCount < 0 ? 0 : playerShipCount;
         }
         else
         {
-            enemyShipCount--;
+            enemyShipCount -= count;
             enemyShipCount = enemyShipCount < 0 ? 0 : enemyShipCount;
         }
 
         UpdateUI();
     }
 
-    public void AddShip(ShipSide shipSide)
+    public void AddShip(ShipSide shipSide, int count)
     {
         if (shipSide == ShipSide.Player)
         {
-            playerShipCount++;
+            playerShipCount += count;
         }
         else
         {
-            enemyShipCount++;
+            enemyShipCount += count;
         }
 
         UpdateUI();

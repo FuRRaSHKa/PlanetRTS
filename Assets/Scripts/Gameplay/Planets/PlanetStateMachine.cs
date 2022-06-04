@@ -19,51 +19,51 @@ public class PlanetStateMachine : MonoBehaviour
     [SerializeField] private int playerShipCount;
     [SerializeField] private int enemyShipCount;
 
-    private PlanetFacade planetFacafe;
+    private PlanetFacade planetFacade;
 
     private PlanetStateName currentStateName;
 
     private PlanetState currentState;
     private PlanetState[] states;
 
-    public void Start()
+    public void Awake()
     {
-        planetFacafe = GetComponent<PlanetFacade>();
+        planetFacade = GetComponent<PlanetFacade>();
 
-        planetFacafe.OnShipComing += AddShip;
-        planetFacafe.OnShipLeaving += RemoveShip;
+        planetFacade.OnShipComing += AddShip;
+        planetFacade.OnShipLeaving += RemoveShip;
 
         states = new PlanetState[3];
-        states[0] = new ContestState(planetData.ShipContestInterval, planetFacafe.PlanetId, PlanetStateName.Contesting);
-        states[1] = new CaptureState(planetData.ShipsGenerationInterval, planetFacafe, ShipSide.Enemy, planetData.ShipGenerationCount, PlanetStateName.EnemyCapture);
-        states[2] = new CaptureState(planetData.ShipsGenerationInterval, planetFacafe, ShipSide.Player, planetData.ShipGenerationCount, PlanetStateName.PlayerCapture);
+        states[0] = new ContestState(planetData.ShipContestInterval, planetFacade, PlanetStateName.Contesting);
+        states[1] = new CaptureState(planetData.ShipsGenerationInterval, planetFacade, ShipSide.Enemy, planetData.ShipGenerationCount, PlanetStateName.EnemyCapture);
+        states[2] = new CaptureState(planetData.ShipsGenerationInterval, planetFacade, ShipSide.Player, planetData.ShipGenerationCount, PlanetStateName.PlayerCapture);
     }
 
-    public void RemoveShip(ShipSide shipSide)
+    public void RemoveShip(ShipSide shipSide, int count)
     {
         if (shipSide == ShipSide.Player)
         {
-            playerShipCount--;
+            playerShipCount -= count;
             playerShipCount = playerShipCount < 0 ? 0 : playerShipCount;
         }
         else
         {
-            enemyShipCount--;
+            enemyShipCount -= count;
             enemyShipCount = enemyShipCount < 0 ? 0 : enemyShipCount;
         }
 
         CheckState();
     }
 
-    public void AddShip(ShipSide shipSide)
+    public void AddShip(ShipSide shipSide, int count)
     {
         if (shipSide == ShipSide.Player)
         {
-            playerShipCount++;
+            playerShipCount += count;
         }
         else
         {
-            enemyShipCount++;
+            enemyShipCount += count;
         }
 
         CheckState();
@@ -82,7 +82,7 @@ public class PlanetStateMachine : MonoBehaviour
             {
                 nameNew = PlanetStateName.PlayerCapture;
             }
-            else if(enemyShipCount != 0)
+            else if (enemyShipCount != 0)
             {
                 nameNew = PlanetStateName.EnemyCapture;
             }
