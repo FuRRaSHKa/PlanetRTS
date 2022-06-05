@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class GUIScreens : MonoBehaviour
 {
+    [SerializeField] protected bool isConst = false;
+
     public bool IsActive => gameObject.activeSelf;
 
-    private void Awake()
+    protected void Awake()
     {  
+    }
+
+    protected virtual void Start()
+    {
+        if (!isConst)
+        {
+            UIController.RegisterSelf(this);
+        }
     }
 
     public virtual void OnOpen()

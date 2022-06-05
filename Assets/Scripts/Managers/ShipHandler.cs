@@ -24,6 +24,7 @@ public class ShipHandler : MonoBehaviour
         if (Instance != null)
         {
             Destroy(this);
+            return;
         }
 
         Instance = this;

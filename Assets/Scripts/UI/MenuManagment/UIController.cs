@@ -6,7 +6,29 @@ public class UIController : MonoBehaviour
 {
     public static UIController Instance;
 
-    private Dictionary<string, GUIScreens> cashedUIDict;
+    [SerializeField] private List<GUIScreens> prebakedList = new List<GUIScreens>(); 
+
+    private Dictionary<string, GUIScreens> cashedUIDict = new Dictionary<string, GUIScreens>();
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+
+        Instance = this;
+        BakeDict();
+    }
+
+    private void BakeDict()
+    {
+        foreach (var menu in prebakedList)
+        {
+            RegisterSelf(menu);
+        }
+    }
 
     public static void RegisterSelf(GUIScreens screen)
     {
@@ -15,7 +37,7 @@ public class UIController : MonoBehaviour
             return;
         }
 
-        Instance.cashedUIDict.Add(screen.name, screen);
+        Instance.cashedUIDict.Add(screen.GetType().Name, screen);
     }
 
     /// <summary>
@@ -33,6 +55,7 @@ public class UIController : MonoBehaviour
 
         if (screen.IsActive)
         {
+
             return;
         }
 
@@ -68,4 +91,24 @@ public class UIController : MonoBehaviour
         screen.gameObject.SetActive(false);
         screen.OnClosed();
     }
+
+    [ContextMenu("FindAllMenus")]
+    private void FindAllMenus()
+    {
+        Canvas[] allCanvases = FindObjectsOfType<Canvas>();
+        foreach (Canvas canvas in allCanvases)
+        {
+            GUIScreens[] menus = canvas.GetComponentsInChildren<GUIScreens>(true);
+            foreach (GUIScreens mn in menus)
+            {
+                if (!cashedUIDict.ContainsValue(mn))
+                {
+                    prebakedList.Add( mn);
+                }              
+            }
+        }
+
+        UnityEditor.SceneManagement.EditorSceneManager.SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+    }
+
 }
