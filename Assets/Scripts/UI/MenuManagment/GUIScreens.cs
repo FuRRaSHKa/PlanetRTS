@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GUIScreens : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool IsActive => gameObject.activeSelf;
+
+    private void Awake()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void OnOpen()
     {
-        
+    }
+
+    public virtual void OnClosed()
+    {
     }
 }
