@@ -3,25 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class ShipCountChoose : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI textMesh;
 
-    private float value;
+    ShipCountInputData inputActions;
+
+    private float value = .5f;
 
     public float Value => value;
 
-    private void Start()
+    private void Awake()
     {
         OnSliderValueChage();
+        inputActions = new ShipCountInputData();
+        inputActions.Enable();
     }
 
     public void OnSliderValueChage()
     {
         value = slider.value;
-
         textMesh.text = (Mathf.Floor(value * 10) * 10).ToString() + "%";
     }
+
+    private void Update()
+    {       
+        float value = inputActions.UI.ChangeShipCount.ReadValue<float>() * Time.deltaTime;
+        value += slider.value;
+        slider.value = value;
+    }
+
 }

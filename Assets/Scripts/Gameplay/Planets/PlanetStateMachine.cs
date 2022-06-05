@@ -7,9 +7,10 @@ using System.Linq;
 public enum PlanetStateName
 {
     None = -1,
-    Contesting,
-    PlayerCapture,
-    EnemyCapture
+    Fighting,
+    Capturing,
+    PlayerCaptured,
+    EnemyCaptured
 }
 
 public class PlanetStateMachine : MonoBehaviour
@@ -21,10 +22,12 @@ public class PlanetStateMachine : MonoBehaviour
 
     private PlanetFacade planetFacade;
 
-    private PlanetStateName currentStateName;
+    [SerializeField] private PlanetStateName currentStateName;
 
     private PlanetState currentState;
     private PlanetState[] states;
+
+    private bool isGameStarted = false;
 
     public void Awake()
     {
@@ -33,10 +36,32 @@ public class PlanetStateMachine : MonoBehaviour
         planetFacade.OnShipComing += AddShip;
         planetFacade.OnShipLeaving += RemoveShip;
 
-        states = new PlanetState[3];
-        states[0] = new ContestState(planetData.ShipContestInterval, planetFacade, PlanetStateName.Contesting);
-        states[1] = new CaptureState(planetData.ShipsGenerationInterval, planetFacade, ShipSide.Enemy, planetData.ShipGenerationCount, PlanetStateName.EnemyCapture);
-        states[2] = new CaptureState(planetData.ShipsGenerationInterval, planetFacade, ShipSide.Player, planetData.ShipGenerationCount, PlanetStateName.PlayerCapture);
+        states = new PlanetState[4];
+        states[0] = new ContestState(this, planetData.ShipContestInterval, planetFacade, PlanetStateName.Fighting);
+        states[1] = new CapturedState(this, planetData.ShipsGenerationInterval, planetFacade, ShipSide.Enemy, planetData.ShipGenerationCount, PlanetStateName.EnemyCaptured);
+        states[2] = new CapturedState(this, planetData.ShipsGenerationInterval, planetFacade, ShipSide.Player, planetData.ShipGenerationCount, PlanetStateName.PlayerCaptured);
+        states[3] = new CaptureState(this, planetFacade, planetData.CaptureInterval, PlanetStateName.Capturing, planetData.CapturePointsPerShip);
+
+        EventManager.OnStartGame += () => isGameStarted = true;
+        EventManager.OnEndGame += (value) => isGameStarted = false;
+    }
+
+    public void InitPlanet(ShipSide startShipSide)
+    {
+        if (startShipSide == ShipSide.None)
+        {
+            ChangeState(PlanetStateName.Capturing);
+        }
+        else if (startShipSide == ShipSide.Player)
+        {
+            ChangeState(PlanetStateName.PlayerCaptured);
+        }
+        else if (startShipSide == ShipSide.Enemy)
+        {
+            ChangeState(PlanetStateName.EnemyCaptured);
+        }
+
+        StartCoroutine(StateUpdate());
     }
 
     public void RemoveShip(ShipSide shipSide, int count)
@@ -52,7 +77,7 @@ public class PlanetStateMachine : MonoBehaviour
             enemyShipCount = enemyShipCount < 0 ? 0 : enemyShipCount;
         }
 
-        CheckState();
+        currentState?.ShipValueUpdate(playerShipCount, enemyShipCount);
     }
 
     public void AddShip(ShipSide shipSide, int count)
@@ -66,44 +91,17 @@ public class PlanetStateMachine : MonoBehaviour
             enemyShipCount += count;
         }
 
-        CheckState();
+        currentState?.ShipValueUpdate(playerShipCount, enemyShipCount);
     }
 
-    private void CheckState()
+    public void ChangeState(PlanetStateName planetStateName)
     {
-        PlanetStateName nameNew = currentStateName;
-        if (playerShipCount != 0 && enemyShipCount != 0)
-        {
-            nameNew = PlanetStateName.Contesting;
-        }
-        else
-        {
-            if (playerShipCount != 0)
-            {
-                nameNew = PlanetStateName.PlayerCapture;
-            }
-            else if (enemyShipCount != 0)
-            {
-                nameNew = PlanetStateName.EnemyCapture;
-            }
-        }
+        currentState?.Exit();
+        currentState = states.DefaultIfEmpty(null).FirstOrDefault(f => f.PlanetStateName == planetStateName);
+        currentStateName = planetStateName;
+        currentState?.Enter();
 
-        if (nameNew != currentStateName)
-        {
-            if (currentStateName != PlanetStateName.None)
-            {
-                StopAllCoroutines();
-            }
-
-            currentStateName = nameNew;
-            ChangeState();
-        }
-    }
-
-    private void ChangeState()
-    {
-        currentState = states.DefaultIfEmpty(null).First(f => f.PlanetStateName == currentStateName);
-        StartCoroutine(StateUpdate());
+        currentState?.ShipValueUpdate(playerShipCount, enemyShipCount);
     }
 
     private IEnumerator StateUpdate()
@@ -115,6 +113,12 @@ public class PlanetStateMachine : MonoBehaviour
 
         while (true)
         {
+            if (!isGameStarted)
+            {
+                yield return new WaitForSeconds(currentState.UpdateInterval);
+                continue;
+            }
+
             currentState.Update();
             yield return new WaitForSeconds(currentState.UpdateInterval);
         }

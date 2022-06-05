@@ -15,15 +15,17 @@ public class PlanetFacade : MonoBehaviour
 
     public event Action<ShipSide, int> OnShipComing;
     public event Action<ShipSide, int> OnShipLeaving;
+    public event Action<ShipSide, float> OnPlanetCapture;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Init(int planetId)
+    public void Init(int planetId, ShipSide shipSide = ShipSide.None)
     {
         this.planetId = planetId;
+        GetComponent<PlanetStateMachine>().InitPlanet(shipSide);
     }
 
     public bool CheckPosCollusion(Vector3 pos)
@@ -40,6 +42,11 @@ public class PlanetFacade : MonoBehaviour
     public void RemoveShip(ShipSide shipSide, int count)
     {
         OnShipLeaving?.Invoke(shipSide, count);
+    }
+
+    public void CapturePlanet(ShipSide shipSide, float value)
+    {
+        OnPlanetCapture?.Invoke(shipSide, value); 
     }
 
     private void OnDisable()

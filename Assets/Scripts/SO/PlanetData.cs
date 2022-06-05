@@ -11,8 +11,12 @@ public class PlanetData : ScriptableObject
 
     [Header("Ship contest")]
     [SerializeField] private float shipContestInterval = 1;
+    [SerializeField] private float capturePointsPerShip = 1;
+    [SerializeField] private float captureInterval = 1;
 
     public float ShipsGenerationInterval => shipsGenerationInterval;
     public int ShipGenerationCount => shipGenerationCount;
     public float ShipContestInterval => shipContestInterval;
+    public float CapturePointsPerShip => capturePointsPerShip;
+    public float CaptureInterval => captureInterval;
 }

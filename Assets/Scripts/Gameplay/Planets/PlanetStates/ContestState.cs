@@ -6,9 +6,27 @@ public class ContestState : PlanetState
 {
     private PlanetFacade planetFacade;
 
-    public ContestState(float updateInterval, PlanetFacade planetFacade, PlanetStateName planetStateName) : base(updateInterval, planetStateName) 
+    public ContestState(PlanetStateMachine planetStateMachine, float updateInterval, PlanetFacade planetFacade, PlanetStateName planetStateName) : base(planetStateMachine, updateInterval, planetStateName)
     {
         this.planetFacade = planetFacade;
+    }
+
+    public override void Enter()
+    {
+        
+    }
+
+    public override void Exit()
+    {
+       
+    }
+
+    public override void ShipValueUpdate(int playerShips, int enemyShip)
+    {
+        if (playerShips == 0 || enemyShip == 0)
+        {
+            planetStateMachine.ChangeState(PlanetStateName.Capturing); 
+        }
     }
 
     public override void Update()

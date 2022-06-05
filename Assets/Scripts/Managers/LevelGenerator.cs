@@ -9,18 +9,26 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private LevelData levelData;
     [SerializeField] private PlanetFacade[] planetPrefabs;
 
+    [Header("Borders")]
+    [SerializeField] private Transform center;
+    [SerializeField] private Vector3 size;
+
     private List<PlanetFacade> planets;
 
     private Bounds screenBounds;
 
-    private void Awake()
+    private void OnDrawGizmosSelected()
     {
-        InitBounds();
-        SpawnPlanets();
+        if (center != null)
+        {
+            Gizmos.DrawWireCube(center.transform.position, size);
+        }
     }
 
     private void Start()
     {
+        InitBounds();
+        SpawnPlanets();
         FillPlanetWithShips();
 
         planetInput.SetPlanets(planets);
@@ -28,7 +36,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void InitBounds()
     {
-        screenBounds = new Bounds(transform.position, new Vector3(10, 10, 10));
+        screenBounds = new Bounds(center.transform.position, size);
     }
 
     private void SpawnPlanets()
@@ -49,7 +57,18 @@ public class LevelGenerator : MonoBehaviour
                 Destroy(planet.gameObject);
             }
 
-            planet.Init(i);
+            if (i == 0)
+            {
+                planet.Init(i, ShipSide.Player);
+            }
+            else if (i == 1)
+            {
+                planet.Init(i, ShipSide.Enemy);
+            }
+            else
+            {
+                planet.Init(i);
+            }
         }
     }
 
@@ -67,7 +86,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 planetFacade.transform.localPosition = pos;
                 return true;
-            }    
+            }
         }
 
         return false;

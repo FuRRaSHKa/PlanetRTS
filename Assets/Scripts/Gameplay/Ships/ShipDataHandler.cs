@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public enum ShipSide
 {
+    None = -1,
     Player,
     Enemy
 }

@@ -4,20 +4,121 @@ using UnityEngine;
 
 public class CaptureState : PlanetState
 {
-    private int shipCount;
+    private float playerPoints = 0;
+    private float enemyPoints = 0;
 
-    private ShipSide shipSide;
+    private int enemyShips = 0;
+    private int playerShips = 0;
+
+    private float capturingValuePerShip = 1;
+
+    private ShipSide targetSide = ShipSide.None;
+
     private PlanetFacade planetFacade;
 
-    public CaptureState(float updateInterval, PlanetFacade planetFacade, ShipSide shipSide, int shipCount, PlanetStateName planetStateName) : base(updateInterval, planetStateName) 
+    public CaptureState(PlanetStateMachine planetStateMachine, PlanetFacade planetFacade, float updateInterval, PlanetStateName planetStateName, float capturingValuePerShip) 
+        : base(planetStateMachine, updateInterval, planetStateName)
     {
-        this.shipSide = shipSide;
-        this.planetFacade = planetFacade;
-        this.shipCount = shipCount;
+        this.capturingValuePerShip = capturingValuePerShip;
+        this.planetFacade = planetFacade;     
+    }
+
+    public override void Enter()
+    {
+
+    }
+
+    public override void Exit()
+    {
+        planetFacade.CapturePlanet(ShipSide.Player, 0);
+        planetFacade.CapturePlanet(ShipSide.Enemy, 0);
+    }
+
+    public override void ShipValueUpdate(int playerShips, int enemyShips)
+    {
+        this.playerShips = playerShips;
+        this.enemyShips = enemyShips;
+
+        if (enemyShips != 0)
+        {
+            if (playerShips <= 0)
+            {
+                targetSide = ShipSide.Enemy;
+            }
+            else
+            {
+                planetStateMachine.ChangeState(PlanetStateName.Fighting);
+            }
+
+            return;
+        }
+
+        if (playerShips != 0)
+        {
+            if (enemyShips <= 0)
+            {
+                targetSide = ShipSide.Player;
+            }
+            else
+            {
+                planetStateMachine.ChangeState(PlanetStateName.Fighting);
+            }
+
+            return;
+        }
     }
 
     public override void Update()
     {
-        ShipHandler.Instance.IncreaseShipCount(planetFacade, shipCount, shipSide);
+        if (targetSide != ShipSide.None)
+        {
+            planetFacade.CapturePlanet(ShipSide.Player, playerPoints / 100f);
+            planetFacade.CapturePlanet(ShipSide.Enemy, enemyPoints / 100f);
+        }      
+
+        if (targetSide == ShipSide.Player)
+        {
+            PlayerCapturing();
+        }
+        else if (targetSide == ShipSide.Enemy)
+        {
+            EnemyCapturing();
+        }       
+    }
+
+    private void EnemyCapturing()
+    {
+        if (playerPoints > 0)
+        {
+            playerPoints -= enemyShips * capturingValuePerShip;
+        }
+        else
+        {
+            enemyPoints += capturingValuePerShip * enemyShips;
+        }
+
+        if (enemyPoints >= 100)
+        {
+            enemyPoints = 100;
+            planetStateMachine.ChangeState(PlanetStateName.EnemyCaptured);
+        }
+    }
+
+    private void PlayerCapturing()
+    {
+        if (enemyPoints > 0)
+        {
+            enemyPoints -= playerShips * capturingValuePerShip;
+        }
+        else
+        {
+            playerPoints += capturingValuePerShip * playerShips;
+        }
+
+        if (playerPoints >= 100)
+        {
+            playerPoints = 100;
+            planetStateMachine.ChangeState(PlanetStateName.PlayerCaptured);
+        }
     }
 }

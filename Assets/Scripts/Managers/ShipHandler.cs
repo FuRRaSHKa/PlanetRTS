@@ -19,6 +19,8 @@ public class ShipHandler : MonoBehaviour
 
     public event Action<float> OnProgressChange;
 
+    private bool isGameStarted = false;
+
     private void Awake()
     {
         if (Instance != null)
@@ -28,6 +30,12 @@ public class ShipHandler : MonoBehaviour
         }
 
         Instance = this;
+
+        EventManager.OnStartGame += () =>
+        {
+            isGameStarted = true;
+            SendProgress();
+        };
     }
 
     public bool TryDuelShips(int planetID)
@@ -65,7 +73,7 @@ public class ShipHandler : MonoBehaviour
         {
             count = playerShips.Where(w => w.IsWithPlanet(planetFacade.PlanetId)).Sum(s => 1);
         }
-        else
+        else if (shipSide == ShipSide.Enemy)
         {
             count = enemyShips.Where(w => w.IsWithPlanet(planetFacade.PlanetId)).Sum(s => 1);
         }
@@ -139,6 +147,17 @@ public class ShipHandler : MonoBehaviour
     private void SendProgress()
     {
         OnProgressChange?.Invoke((float)playershipCount / allshipCount);
+
+        if (playershipCount <= 0)
+        {
+            UIController.Open(typeof(EndGameLoseScreen).Name);
+            EventManager.EndGame(false);
+        }
+        else if(playershipCount == allshipCount)
+        {
+            UIController.Open(typeof(EndGameWinScreen).Name);
+            EventManager.EndGame(true);
+        }
     }
 
     public void SendPlayerShips(int planetID, PlanetFacade planetFacade, float percent)

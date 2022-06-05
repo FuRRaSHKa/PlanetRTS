@@ -15,3 +15,5 @@ MonoBehaviour:
   shipsGenerationInterval: 5
   shipGenerationCount: 3
   shipContestInterval: 0.2
+  capturePointsPerShip: 0.1
+  captureInterval: 0.2

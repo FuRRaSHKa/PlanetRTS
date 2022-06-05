@@ -20,21 +20,23 @@ public class PlanetShipUi : MonoBehaviour
 
     public void Awake()
     {
-        PlanetFacade planetFacafe = GetComponent<PlanetFacade>();
+        PlanetFacade planetFacade = GetComponent<PlanetFacade>();
 
-        planetFacafe.OnShipComing += AddShip;
-        planetFacafe.OnShipLeaving += RemoveShip;
+        planetFacade.OnShipComing += AddShip;
+        planetFacade.OnShipLeaving += RemoveShip;
+        planetFacade.OnPlanetCapture += PlanetCapture;
 
         enemyText.color = shipColorData.GetColor(ShipSide.Enemy);
         playerText.color = shipColorData.GetColor(ShipSide.Player);
-        DisableUI();
+        DisableCapturedUI();
+        DisableContestUI();
     }
 
     public void RemoveShip(ShipSide shipSide, int count)
     {
         if (shipSide == ShipSide.Player)
         {
-            playerShipCount-= count;
+            playerShipCount -= count;
             playerShipCount = playerShipCount < 0 ? 0 : playerShipCount;
         }
         else
@@ -60,29 +62,44 @@ public class PlanetShipUi : MonoBehaviour
         UpdateUI();
     }
 
+    public void PlanetCapture(ShipSide shipSide, float value)
+    {
+        if (shipSide == ShipSide.Player)
+        {
+            playerProgressImage.enabled = true;
+            playerProgressImage.fillAmount = value;
+        }
+        else
+        {
+            enemyProgressImage.enabled = true;
+            enemyProgressImage.fillAmount = value;
+        }
+    }
+
     private void UpdateUI()
     {
-        DisableUI();
         if (playerShipCount == 0 && enemyShipCount == 0)
         {
+            DisableContestUI();
+            DisableCapturedUI();
             return;
         }
 
         if (playerShipCount != 0 && enemyShipCount != 0)
         {
+            DisableCapturedUI();
             UseContestUI();
             return;
-        }   
+        }
 
-        UseCaptureUI();
+        DisableContestUI();
+        UseCapturedUI();
     }
 
     private void UseContestUI()
     {
         enemyText.enabled = true;
         playerText.enabled = true;
-        enemyProgressImage.enabled = true;
-        playerProgressImage.enabled = true;
 
         enemyText.text = enemyShipCount.ToString();
         playerText.text = playerShipCount.ToString();
@@ -92,20 +109,22 @@ public class PlanetShipUi : MonoBehaviour
         playerProgressImage.fillAmount = playerShipCount / allships;
     }
 
-    private void UseCaptureUI()
+    private void DisableContestUI()
+    {
+        enemyText.enabled = false;
+        playerText.enabled = false;
+    }
+
+    private void UseCapturedUI()
     {
         mainText.enabled = true;
         mainText.text = Mathf.Max(enemyShipCount, playerShipCount).ToString();
         mainText.color = shipColorData.GetColor(enemyShipCount > playerShipCount ? ShipSide.Enemy : ShipSide.Player);
     }
 
-    private void DisableUI()
+    private void DisableCapturedUI()
     {
         mainText.enabled = false;
-        enemyText.enabled = false;
-        playerText.enabled = false;
-        enemyProgressImage.enabled = false;
-        playerProgressImage.enabled = false;
     }
 
 }

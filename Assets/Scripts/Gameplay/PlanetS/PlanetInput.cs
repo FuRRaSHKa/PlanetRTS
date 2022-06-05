@@ -20,23 +20,37 @@ public class PlanetInput : MonoBehaviour
 
     private CustomPlayerInput inputActions;
 
+    private bool isGameStarted = false;
+
     private void Awake()
     {
         inputActions = new CustomPlayerInput();
-        inputActions.Enable();
 
-        inputActions.UI.Click.performed += ScreenInput;
-        inputActions.UI.Submit.performed += Submit;
-    }
-
-    private void Update()
-    {
-        MoveCursor(inputActions.UI.Navigate.ReadValue<Vector2>() * sensivity);
+        EventManager.OnEndGame += EndGame;
+        EventManager.OnStartGame += GameStarted;
     }
 
     private void Start()
     {
         cam = Camera.main;
+
+        cursorPos.x = cam.pixelWidth / 2;
+        cursorPos.y = cam.pixelWidth / 2;
+    }
+
+    private void GameStarted()
+    {
+        inputActions.Enable();
+
+        inputActions.UI.Click.performed += ScreenInput;
+        inputActions.UI.Submit.performed += Submit;
+        isGameStarted = true;
+    }
+
+    private void EndGame(bool value)
+    {
+        inputActions.Dispose();
+        isGameStarted = false;
     }
 
     #region ScreenInput
@@ -46,6 +60,11 @@ public class PlanetInput : MonoBehaviour
         if (context.performed)
         {
             Vector3 pos = inputActions.UI.Point.ReadValue<Vector2>();
+            if (pos.y < 100)
+            { 
+                return;
+            }
+
             pos.z = 10;
             cursorPos = pos;
             CheckTouch(cam.ScreenToWorldPoint(pos));
@@ -81,6 +100,18 @@ public class PlanetInput : MonoBehaviour
     }
 
     #endregion ScreenInput
+
+    #region NotScreenInput
+
+    private void Update()
+    {
+        if (!isGameStarted)
+        {
+            return;
+        }
+
+        MoveCursor(inputActions.UI.Navigate.ReadValue<Vector2>() * sensivity);
+    }
 
     private void MoveCursor(Vector2 dir)
     {
@@ -155,6 +186,8 @@ public class PlanetInput : MonoBehaviour
         playerCursor.SetActiveSecondCursor(false);
         chosenPlanetId = -1;
     }
+
+    #endregion
 
     public void SetPlanets(List<PlanetFacade> planetFacades)
     {

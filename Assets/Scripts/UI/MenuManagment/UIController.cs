@@ -55,7 +55,6 @@ public class UIController : MonoBehaviour
 
         if (screen.IsActive)
         {
-
             return;
         }
 
@@ -95,6 +94,7 @@ public class UIController : MonoBehaviour
     [ContextMenu("FindAllMenus")]
     private void FindAllMenus()
     {
+        prebakedList = new List<GUIScreens>(10);
         Canvas[] allCanvases = FindObjectsOfType<Canvas>();
         foreach (Canvas canvas in allCanvases)
         {

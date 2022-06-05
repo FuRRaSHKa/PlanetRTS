@@ -8,15 +8,24 @@ public abstract class PlanetState
 
     protected PlanetStateName planetStateName;
 
+    protected PlanetStateMachine planetStateMachine;
+
     public float UpdateInterval => updateInterval;
     public PlanetStateName PlanetStateName => planetStateName;
 
-    public PlanetState(float updateInterval, PlanetStateName planetStateName)
+    public PlanetState(PlanetStateMachine planetStateMachine, float updateInterval, PlanetStateName planetStateName)
     {
         this.planetStateName = planetStateName;
         this.updateInterval = updateInterval;
+        this.planetStateMachine = planetStateMachine;
     }
 
     public abstract void Update();
+
+    public abstract void Enter();
+
+    public abstract void Exit();
+
+    public abstract void ShipValueUpdate(int playerShips, int enemyShip);
 
 }
