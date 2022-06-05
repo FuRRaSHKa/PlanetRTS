@@ -7,8 +7,7 @@ public class GUIScreens : MonoBehaviour
     public bool IsActive => gameObject.activeSelf;
 
     private void Awake()
-    {
-        
+    {  
     }
 
     public virtual void OnOpen()

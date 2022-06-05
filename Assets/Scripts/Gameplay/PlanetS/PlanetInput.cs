@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlanetInput : MonoBehaviour
 {
     [SerializeField] private PlayerCursors playerCursor;
+    [SerializeField] private ShipCountChoose shipCountChoose;
     [SerializeField] private float sensivity;
 
     private List<PlanetFacade> planetFacades;
@@ -68,7 +69,7 @@ public class PlanetInput : MonoBehaviour
                 return;
             }
 
-            ShipHandler.Instance.SendPlayerShips(planetFacades[chosenPlanetId].PlanetId, planetFacades[i]);
+            ShipHandler.Instance.SendPlayerShips(planetFacades[chosenPlanetId].PlanetId, planetFacades[i], shipCountChoose.Value);
             ResetChoose(resetFirstCursor);
             return;
         }

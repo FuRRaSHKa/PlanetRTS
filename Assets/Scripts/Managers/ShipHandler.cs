@@ -140,13 +140,21 @@ public class ShipHandler : MonoBehaviour
         OnProgressChange?.Invoke((float)playershipCount / allshipCount);
     }
 
-    public void SendPlayerShips(int planetID, PlanetFacade planetFacade)
+    public void SendPlayerShips(int planetID, PlanetFacade planetFacade, float percent)
     {
         IEnumerable enumerator = playerShips.Where(w => w.IsWithPlanet(planetID));
+        int count = Mathf.FloorToInt(playerShips.Where(w => w.IsWithPlanet(planetID)).Sum(s => 1) * percent);
+        int id = 0;
 
         foreach (ShipFacade ship in enumerator)
         {
-            ship.SendToPlanet(planetFacade);
+            id++;
+            if (id > count)
+            {
+                return;
+            }
+
+            ship.SendToPlanet(planetFacade); 
         }
     }
 
