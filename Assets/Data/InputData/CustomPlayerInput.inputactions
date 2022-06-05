@@ -19,7 +19,7 @@
                     "id": "b32c1c81-3794-4d9e-a220-759f646492e3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Cancel",
@@ -90,7 +90,7 @@
                 {
                     "name": "Gamepad",
                     "id": "e96818cc-8484-420a-9268-a423eaf4a9a0",
-                    "path": "2DVector(mode=2)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -200,7 +200,7 @@
                 {
                     "name": "Joystick",
                     "id": "1616ad11-b695-4eed-abf2-f43523ca7c99",
-                    "path": "2DVector(mode=2)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -255,7 +255,7 @@
                 {
                     "name": "Keyboard",
                     "id": "a5c80c37-fbfd-4a08-b52d-887c3caf7a72",
-                    "path": "2DVector(mode=2)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -354,7 +354,18 @@
                 {
                     "name": "",
                     "id": "afbba83a-379e-4b9a-bcef-351a984311bf",
-                    "path": "*/{Submit}",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a04a1c71-ca7b-443e-a0a5-799113acf2c4",
+                    "path": "<Keyboard>/#(z)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

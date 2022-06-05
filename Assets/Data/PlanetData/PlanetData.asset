@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipsGenerationInterval: 5
   shipGenerationCount: 3
-  shipContestInterval: 1
+  shipContestInterval: 0.2

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlanetFacade : MonoBehaviour
 {
-    private PlanetCursor planetCursor;
     private SpriteRenderer spriteRenderer;
 
     private int planetId = 0;
@@ -19,7 +18,6 @@ public class PlanetFacade : MonoBehaviour
 
     private void Awake()
     {
-        planetCursor = GetComponent<PlanetCursor>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -32,18 +30,6 @@ public class PlanetFacade : MonoBehaviour
     {
         Bounds bounds = spriteRenderer.bounds;
         return pos.x > bounds.min.x && pos.x < bounds.max.x && pos.z > bounds.min.z && pos.z < bounds.max.z;
-    }
-
-    public void ChoosePlanet(bool value)
-    {
-        if (value)
-        {
-            planetCursor.ShowCursor();
-        }
-        else
-        {
-            planetCursor.HideCursor();
-        }
     }
 
     public void AddShip(ShipSide shipSide, int count)

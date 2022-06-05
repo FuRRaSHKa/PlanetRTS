@@ -9,16 +9,10 @@ public class PlayerCursors : MonoBehaviour
     [SerializeField] private GameObject secondCursor;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float cursorSpeed;
+    [SerializeField] private float cursorRadius;
 
-    private Vector3 targetPosition;
-    private Vector3 currentPosition;
-
-    private bool enableToMove = false;
-
-    private float moveDuration;
-    private float curTime;
-
-    private Action onMoveEnd;
+    private Vector3 firstCursorPos;
+    private Vector3 secondCursorPos;
 
     private void Start()
     {
@@ -29,12 +23,24 @@ public class PlayerCursors : MonoBehaviour
 
     public void PlaceFirstCursor(Vector3 pos)
     {
-        firstCursor.transform.position = pos;
+        firstCursorPos = pos;
+        firstCursorPos.y = 5;
+
+        if (!firstCursor.activeSelf)
+        {
+            firstCursor.transform.position = firstCursorPos; 
+        }
     }
 
     public void PlaceSecondCursor(Vector3 pos)
     {
-        secondCursor.transform.position = pos;
+        secondCursorPos = pos;
+        secondCursorPos.y = 5;
+
+        if (!secondCursor.activeSelf)
+        {
+            secondCursor.transform.position = secondCursorPos;
+        }
     }
 
     public void SetActiveFirstCursor(bool value)
@@ -44,47 +50,32 @@ public class PlayerCursors : MonoBehaviour
 
     public void SetActiveSecondCursor(bool value)
     {
+        lineRenderer.enabled = value;
         secondCursor.SetActive(value);
-    }
-
-    public void MoveLineTo(Vector3 targetPosition, Action callback = null)
-    {
-        moveDuration = (targetPosition - currentPosition).magnitude / cursorSpeed;
-        curTime = 0;
-        onMoveEnd = callback;
-        this.targetPosition = targetPosition;
-        enableToMove = true;
-
-        lineRenderer.SetPosition(1, currentPosition);
-        lineRenderer.enabled = true;
-    }
-
-    public void SetStartPosition(Vector3 startPosition)
-    {
-        lineRenderer.SetPosition(0, startPosition);
-        currentPosition = startPosition;
     }
 
     public void Disable()
     {
-        enableToMove = false;
         lineRenderer.enabled = false;
     }
 
     private void Update()
     {
-        if (!enableToMove)
+        firstCursor.transform.position = Vector3.Lerp(firstCursor.transform.position, firstCursorPos, cursorSpeed * Time.deltaTime);
+        secondCursor.transform.position = Vector3.Lerp(secondCursor.transform.position, secondCursorPos, cursorSpeed * Time.deltaTime);
+
+        Vector3 dir = (firstCursor.transform.position - secondCursor.transform.position);
+        dir.y = 0;
+
+        if (dir.magnitude < cursorRadius * 2)
         {
+            lineRenderer.SetPosition(1, firstCursorPos);
+            lineRenderer.SetPosition(0, firstCursorPos);
             return;
         }
 
-        curTime += Time.deltaTime;
-        lineRenderer.SetPosition(1, Vector3.Lerp(currentPosition, targetPosition, curTime / moveDuration));
-
-        if (curTime > moveDuration)
-        {
-            onMoveEnd?.Invoke();
-            enableToMove = false;
-        }
+        dir.Normalize();
+        lineRenderer.SetPosition(0, firstCursor.transform.position - dir * cursorRadius);
+        lineRenderer.SetPosition(1, secondCursor.transform.position + dir * cursorRadius);
     }
 }
