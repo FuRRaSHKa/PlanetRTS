@@ -44,6 +44,7 @@ public class PlanetInput : MonoBehaviour
 
         inputActions.UI.Click.performed += ScreenInput;
         inputActions.UI.Submit.performed += Submit;
+        inputActions.UI.Cancel.performed += Cancel;
         isGameStarted = true;
     }
 
@@ -123,6 +124,8 @@ public class PlanetInput : MonoBehaviour
         cursorPos += dir;
         Vector3 pos = cursorPos;
         pos.z = 5;
+        cursorPos.x = Mathf.Clamp(cursorPos.x, 0, cam.pixelWidth);
+        cursorPos.y = Mathf.Clamp(cursorPos.y, 0, cam.pixelHeight);
         pos = cam.ScreenToWorldPoint(pos);
 
         if (chosenPlanetId == -1)
@@ -167,6 +170,14 @@ public class PlanetInput : MonoBehaviour
             pos.z = 5;
             pos = cam.ScreenToWorldPoint(pos);
             CheckTouch(pos, false, false);
+        }
+    }
+
+    private void Cancel(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            ResetChoose(false); 
         }
     }
 

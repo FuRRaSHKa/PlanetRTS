@@ -53,7 +53,7 @@ public class @ShipCountInputData : IInputActionCollection, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""09fa25c1-608b-4b29-93ac-664e3a2996c7"",
-                    ""path"": ""<Keyboard>/#(-)"",
+                    ""path"": ""<Keyboard>/minus"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -13,7 +13,7 @@ public class EndGameWinScreen : GUIScreens
 
     private IEnumerator LoadMenu()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(0);
     }
 

@@ -40,7 +40,7 @@ public class @CustomPlayerInput : IInputActionCollection, IDisposable
                     ""id"": ""9f37b03e-99e3-4355-801a-9b385be5508c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Point"",
@@ -224,7 +224,7 @@ public class @CustomPlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""f9dd949c-8c4b-4825-aafd-2db5f03d7d00"",
-                    ""path"": ""<Joystick>/stick/up"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -235,7 +235,7 @@ public class @CustomPlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""a53dd100-3294-47fb-a4f0-37cb6dd4a5fe"",
-                    ""path"": ""<Joystick>/stick/down"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -246,7 +246,7 @@ public class @CustomPlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""4436f58b-8915-4dbc-adf2-a524c111996e"",
-                    ""path"": ""<Joystick>/stick/left"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -257,7 +257,7 @@ public class @CustomPlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""6e09b0e8-a4d3-4a66-8a6d-c4d7d702f87a"",
-                    ""path"": ""<Joystick>/stick/right"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
@@ -378,7 +378,7 @@ public class @CustomPlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a04a1c71-ca7b-443e-a0a5-799113acf2c4"",
-                    ""path"": ""<Keyboard>/#(z)"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -389,7 +389,18 @@ public class @CustomPlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6adca379-0dd9-42ad-b2d5-6802379da0b1"",
-                    ""path"": ""*/{Cancel}"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30ba6dfe-bf24-42bd-9f57-7b4ee97fd242"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
