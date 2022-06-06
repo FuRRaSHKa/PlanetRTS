@@ -216,8 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   capturedAudioSignal: {fileID: 3644390358305550306}
-  playerSignal: {fileID: 0}
-  enemySignal: {fileID: 0}
+  playerSignal: {fileID: 8300000, guid: 169fe1d34fe761f438f9d70775df5f1d, type: 3}
+  enemySignal: {fileID: 8300000, guid: 00f1524f05763524a824cbbf9b64fa6d, type: 3}
 --- !u!1 &4829593026376984091
 GameObject:
   m_ObjectHideFlags: 0
