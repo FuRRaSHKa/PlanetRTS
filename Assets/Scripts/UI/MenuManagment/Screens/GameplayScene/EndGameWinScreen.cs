@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndGameWinScreen : GUIScreens
 {
     protected override void Start()
     {
         base.Start();
+        StartCoroutine(LoadMenu());
     }
 
-    public void GoMainMenu()
+    private IEnumerator LoadMenu()
     {
-        //To do load menu
+        yield return new WaitForSeconds(.5f);
+        SceneManager.LoadScene(0);
     }
 
 }

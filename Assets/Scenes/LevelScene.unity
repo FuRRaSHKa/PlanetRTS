@@ -1160,6 +1160,7 @@ GameObject:
   - component: {fileID: 983968186}
   - component: {fileID: 983968185}
   - component: {fileID: 983968184}
+  - component: {fileID: 983968187}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1223,6 +1224,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983968187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983968183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f810504498f3148a7660cfd0b7d442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1089064734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,7 +1285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetInput: {fileID: 1089064737}
   enemyAI: {fileID: 1089064738}
-  levelData: {fileID: 11400000, guid: efcb71c72c6ca49499b438403fd99ee2, type: 2}
   planetPrefabs:
   - {fileID: 4381718366368463007, guid: cddafeaf31be8e541a2091dbe96e69c3, type: 3}
   center: {fileID: 709668418}
@@ -1299,13 +1311,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089064734}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b23a7b912b61a5f47a7470655c6ef97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   decisionInteval: 3
-  planetFacades: []
 --- !u!1 &1116606140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,6 +1764,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isConst: 1
+  eventSystem: {fileID: 983968185}
+  firstButton: {fileID: 2009510780}
 --- !u!82 &1444162868
 AudioSource:
   m_ObjectHideFlags: 0

@@ -8,6 +8,16 @@ public class EventManager : MonoBehaviour
     public static event Action<bool> OnEndGame;
     public static event Action OnStartGame;
 
+    private void Start()
+    {
+        OnEndGame += SaveEndGameStatus;
+    }
+
+    private void SaveEndGameStatus(bool value)
+    {
+        LevelDataHandler.Instance.LevelStatus = value ? LevelStatus.Completed : LevelStatus.Open;
+    }
+
     private void OnDisable()
     {
         OnEndGame = null;

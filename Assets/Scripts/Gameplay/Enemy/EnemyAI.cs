@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float decisionInteval;
 
-     [SerializeField] private List<PlanetFacade> planetFacades;
+    private List<PlanetFacade> planetFacades;
 
     private void Start()
     {
@@ -25,13 +25,13 @@ public class EnemyAI : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(decisionInteval);
-            MakeDecision();         
+            MakeDecision();
         }
     }
 
     private void MakeDecision()
     {
-        PlanetFacade[] planetFacade =  planetFacades.Where(f => f.IsHaveEnemy()).ToArray();
+        PlanetFacade[] planetFacade = planetFacades.Where(f => f.IsHaveEnemy()).ToArray();
         if (planetFacade.Length == 0)
         {
             return;
