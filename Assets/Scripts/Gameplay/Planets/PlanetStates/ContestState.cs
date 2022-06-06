@@ -13,12 +13,12 @@ public class ContestState : PlanetState
 
     public override void Enter()
     {
-        
+        planetFacade.PlayFightEffect(true);
     }
 
     public override void Exit()
     {
-       
+        planetFacade.PlayFightEffect(false);
     }
 
     public override void ShipValueUpdate(int playerShips, int enemyShip)

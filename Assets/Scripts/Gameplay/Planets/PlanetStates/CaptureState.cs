@@ -17,12 +17,12 @@ public class CaptureState : PlanetState
     private PlanetFacade planetFacade;
     private PlayerSoundController playerSoundController;
 
-    public CaptureState(PlanetStateMachine planetStateMachine, PlanetFacade planetFacade, PlayerSoundController playerSoundController, float updateInterval, PlanetStateName planetStateName, float capturingValuePerShip) 
+    public CaptureState(PlanetStateMachine planetStateMachine, PlanetFacade planetFacade, PlayerSoundController playerSoundController, float updateInterval, PlanetStateName planetStateName, float capturingValuePerShip)
         : base(planetStateMachine, updateInterval, planetStateName)
     {
         this.playerSoundController = playerSoundController;
         this.capturingValuePerShip = capturingValuePerShip;
-        this.planetFacade = planetFacade;     
+        this.planetFacade = planetFacade;
     }
 
     public override void Enter()
@@ -42,6 +42,12 @@ public class CaptureState : PlanetState
     {
         this.playerShips = playerShips;
         this.enemyShips = enemyShips;
+
+        if (enemyShips == 0 && playerShips == 0)
+        {
+            targetSide = ShipSide.None;
+            return;
+        }
 
         if (enemyShips != 0)
         {
@@ -80,7 +86,12 @@ public class CaptureState : PlanetState
         {
             planetFacade.CapturePlanet(ShipSide.Player, playerPoints / 100f);
             planetFacade.CapturePlanet(ShipSide.Enemy, enemyPoints / 100f);
-        }      
+        }
+        else
+        {
+            planetFacade.CapturePlanet(ShipSide.Player, 0);
+            planetFacade.CapturePlanet(ShipSide.Enemy, 0);
+        }
 
         if (targetSide == ShipSide.Player)
         {
@@ -89,7 +100,7 @@ public class CaptureState : PlanetState
         else if (targetSide == ShipSide.Enemy)
         {
             EnemyCapturing();
-        }       
+        }
     }
 
     private void EnemyCapturing()

@@ -5,22 +5,20 @@ using UnityEngine;
 
 public class PlanetFacade : MonoBehaviour
 {
+    [SerializeField] private PlanetEffectController planetEffectController;
+
     private SpriteRenderer spriteRenderer;
 
     private int planetId = 0;
-
-    public float PlanetRadius => spriteRenderer.bounds.size.x;
-
-    public int PlanetId => planetId;
-
-    public event Action<int, int> OnShipValueUpdate;
-
-    public event Action<ShipSide, float> OnPlanetCapture;
-
     private int enemyCount = 0;
     private int playerCount = 0;
 
+    public float PlanetRadius => spriteRenderer.bounds.size.x;
+    public int PlanetId => planetId;
     public int EnemyCount => enemyCount;
+
+    public event Action<int, int> OnShipValueUpdate;
+    public event Action<ShipSide, float> OnPlanetCapture;
 
     private void Awake()
     {
@@ -82,6 +80,11 @@ public class PlanetFacade : MonoBehaviour
     public void CapturePlanet(ShipSide shipSide, float value)
     {
         OnPlanetCapture?.Invoke(shipSide, value);
+    }
+
+    public void PlayFightEffect(bool value)
+    {
+        planetEffectController.SetFightEffect(value);
     }
 
     private void OnDisable()
