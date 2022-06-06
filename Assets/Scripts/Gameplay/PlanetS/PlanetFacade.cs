@@ -13,9 +13,14 @@ public class PlanetFacade : MonoBehaviour
 
     public int PlanetId => planetId;
 
-    public event Action<ShipSide, int> OnShipComing;
-    public event Action<ShipSide, int> OnShipLeaving;
+    public event Action<int, int> OnShipValueUpdate;
+
     public event Action<ShipSide, float> OnPlanetCapture;
+
+    private int enemyCount = 0;
+    private int playerCount = 0;
+
+    public int EnemyCount => enemyCount;
 
     private void Awake()
     {
@@ -28,6 +33,16 @@ public class PlanetFacade : MonoBehaviour
         GetComponent<PlanetStateMachine>().InitPlanet(shipSide);
     }
 
+    public bool IsHaveEnemy()
+    {
+        return enemyCount > 0;
+    }
+
+    public bool IsEnemyMoreThanPlayer(int enemy)
+    {
+        return playerCount < enemy;
+    }
+
     public bool CheckPosCollusion(Vector3 pos)
     {
         Bounds bounds = spriteRenderer.bounds;
@@ -36,22 +51,41 @@ public class PlanetFacade : MonoBehaviour
 
     public void AddShip(ShipSide shipSide, int count)
     {
-        OnShipComing?.Invoke(shipSide, count);
+        if (shipSide == ShipSide.Enemy)
+        {
+            enemyCount += count;
+        }
+        else if (shipSide == ShipSide.Player)
+        {
+            playerCount += count;
+        }
+
+        OnShipValueUpdate?.Invoke(playerCount, enemyCount);
     }
 
     public void RemoveShip(ShipSide shipSide, int count)
     {
-        OnShipLeaving?.Invoke(shipSide, count);
+        if (shipSide == ShipSide.Enemy)
+        {
+            enemyCount -= count;
+            enemyCount = enemyCount < 0 ? 0 : enemyCount;
+        }
+        else if (shipSide == ShipSide.Player)
+        {
+            playerCount -= count;
+            playerCount = playerCount < 0 ? 0 : playerCount;
+        }
+
+        OnShipValueUpdate?.Invoke(playerCount, enemyCount);
     }
 
     public void CapturePlanet(ShipSide shipSide, float value)
     {
-        OnPlanetCapture?.Invoke(shipSide, value); 
+        OnPlanetCapture?.Invoke(shipSide, value);
     }
 
     private void OnDisable()
     {
-        OnShipComing = null;
-        OnShipLeaving = null;
+        OnShipValueUpdate = null;
     }
 }

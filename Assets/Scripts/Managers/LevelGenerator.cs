@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private PlanetInput planetInput;
-
+    [SerializeField] private EnemyAI enemyAI;
     [SerializeField] private LevelData levelData;
     [SerializeField] private PlanetFacade[] planetPrefabs;
 
@@ -32,6 +32,7 @@ public class LevelGenerator : MonoBehaviour
         FillPlanetWithShips();
 
         planetInput.SetPlanets(planets);
+        enemyAI.SetPlanets(planets);
     }
 
     private void InitBounds()

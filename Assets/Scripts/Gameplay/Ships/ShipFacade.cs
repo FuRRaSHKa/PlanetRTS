@@ -38,6 +38,7 @@ public class ShipFacade : MonoBehaviour
 
     private void LeavePlanet()
     {
+        currentPlanetId = -1;
         shipWeight.SendRemoveWeight(targetPlanet, shipSide);
     }
 

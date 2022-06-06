@@ -148,6 +148,11 @@ public class ShipHandler : MonoBehaviour
     {
         OnProgressChange?.Invoke((float)playershipCount / allshipCount);
 
+        if (!isGameStarted)
+        {
+            return;
+        }
+
         if (playershipCount <= 0)
         {
             UIController.Open(typeof(EndGameLoseScreen).Name);
@@ -175,6 +180,24 @@ public class ShipHandler : MonoBehaviour
             }
 
             ship.SendToPlanet(planetFacade); 
+        }
+    }
+
+    public void SendEnemyShips(int planetID, PlanetFacade planetFacade, float percent)
+    {
+        List<ShipFacade> enumerator = enemyShips.Where(w => w.IsWithPlanet(planetID)).ToList();
+        int count = Mathf.FloorToInt(enemyShips.Where(w => w.IsWithPlanet(planetID)).Sum(s => 1) * percent);
+        int id = 0;
+
+        foreach (ShipFacade ship in enumerator)
+        {
+            id++;
+            if (id > count)
+            {
+                return;
+            }
+
+            ship.SendToPlanet(planetFacade);
         }
     }
 

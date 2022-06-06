@@ -14,7 +14,7 @@ public class ShipCountChoose : MonoBehaviour
 
     private float value = .5f;
 
-    public float Value => value;
+    public float Value => Mathf.Floor(value * 10) / 10;
 
     private void Awake()
     {
@@ -32,6 +32,11 @@ public class ShipCountChoose : MonoBehaviour
     private void Update()
     {       
         float value = inputActions.UI.ChangeShipCount.ReadValue<float>() * Time.deltaTime;
+        if (value == 0)
+        {
+            return;
+        }
+
         value += slider.value;
         slider.value = value;
     }

@@ -15,4 +15,4 @@ MonoBehaviour:
   planetCount: 5
   maxShipsPerPlanet: 15
   playerShipsCount: 30
-  enemyShipsCount: 15
+  enemyShipsCount: 30

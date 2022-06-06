@@ -15,51 +15,24 @@ public class PlanetShipUi : MonoBehaviour
     [SerializeField] private Image enemyProgressImage;
     [SerializeField] private Image playerProgressImage;
 
-    private int enemyShipCount = 0;
-    private int playerShipCount = 0;
-
     public void Awake()
     {
         PlanetFacade planetFacade = GetComponent<PlanetFacade>();
 
-        planetFacade.OnShipComing += AddShip;
-        planetFacade.OnShipLeaving += RemoveShip;
+        planetFacade.OnShipValueUpdate += UpdateUI;
         planetFacade.OnPlanetCapture += PlanetCapture;
 
         enemyText.color = shipColorData.GetColor(ShipSide.Enemy);
         playerText.color = shipColorData.GetColor(ShipSide.Player);
         DisableCapturedUI();
         DisableContestUI();
-    }
 
-    public void RemoveShip(ShipSide shipSide, int count)
-    {
-        if (shipSide == ShipSide.Player)
+        EventManager.OnEndGame += (value) =>
         {
-            playerShipCount -= count;
-            playerShipCount = playerShipCount < 0 ? 0 : playerShipCount;
-        }
-        else
-        {
-            enemyShipCount -= count;
-            enemyShipCount = enemyShipCount < 0 ? 0 : enemyShipCount;
-        }
-
-        UpdateUI();
-    }
-
-    public void AddShip(ShipSide shipSide, int count)
-    {
-        if (shipSide == ShipSide.Player)
-        {
-            playerShipCount += count;
-        }
-        else
-        {
-            enemyShipCount += count;
-        }
-
-        UpdateUI();
+            UseContestUI(0, 0);
+            DisableCapturedUI();
+            DisableContestUI();
+        };
     }
 
     public void PlanetCapture(ShipSide shipSide, float value)
@@ -76,7 +49,7 @@ public class PlanetShipUi : MonoBehaviour
         }
     }
 
-    private void UpdateUI()
+    private void UpdateUI(int playerShipCount, int enemyShipCount)
     {
         if (playerShipCount == 0 && enemyShipCount == 0)
         {
@@ -88,15 +61,15 @@ public class PlanetShipUi : MonoBehaviour
         if (playerShipCount != 0 && enemyShipCount != 0)
         {
             DisableCapturedUI();
-            UseContestUI();
+            UseContestUI(playerShipCount, enemyShipCount);
             return;
         }
 
         DisableContestUI();
-        UseCapturedUI();
+        UseCapturedUI(playerShipCount, enemyShipCount);
     }
 
-    private void UseContestUI()
+    private void UseContestUI(int playerShipCount, int enemyShipCount)
     {
         enemyText.enabled = true;
         playerText.enabled = true;
@@ -115,7 +88,7 @@ public class PlanetShipUi : MonoBehaviour
         playerText.enabled = false;
     }
 
-    private void UseCapturedUI()
+    private void UseCapturedUI(int playerShipCount, int enemyShipCount)
     {
         mainText.enabled = true;
         mainText.text = Mathf.Max(enemyShipCount, playerShipCount).ToString();
