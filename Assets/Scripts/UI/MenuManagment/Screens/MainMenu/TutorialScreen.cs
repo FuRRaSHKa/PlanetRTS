@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class LevelsScreen : GUIScreens
+public class TutorialScreen : GUIScreens
 {
     [SerializeField] EventSystem eventSystem;
-    [SerializeField] private GameObject firstLevel;
+    [SerializeField] private GameObject firstButton;
 
     private void OnEnable()
     {
-        eventSystem.SetSelectedGameObject(firstLevel);   
+        eventSystem.SetSelectedGameObject(firstButton);
     }
 
     public void OpenMenu()
     {
         UIController.Open(typeof(MainMenuScreen).Name);
-        UIController.Close(typeof(LevelsScreen).Name);
+        UIController.Close(typeof(TutorialScreen).Name);
     }
 }

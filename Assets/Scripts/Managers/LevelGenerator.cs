@@ -6,7 +6,6 @@ public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private PlanetInput planetInput;
     [SerializeField] private EnemyAI enemyAI;
-    [SerializeField] private LevelData levelData;
     [SerializeField] private PlanetFacade[] planetPrefabs;
 
     [Header("Borders")]
@@ -16,6 +15,8 @@ public class LevelGenerator : MonoBehaviour
     private List<PlanetFacade> planets;
 
     private Bounds screenBounds;
+
+    private LevelData levelData;
 
     private void OnDrawGizmosSelected()
     {
@@ -27,6 +28,8 @@ public class LevelGenerator : MonoBehaviour
 
     private void Start()
     {
+        levelData = LevelDataHandler.Instance.LevelData; 
+
         InitBounds();
         SpawnPlanets();
         FillPlanetWithShips();
