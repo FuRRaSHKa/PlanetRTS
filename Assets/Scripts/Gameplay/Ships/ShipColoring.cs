@@ -14,9 +14,8 @@ public class ShipColoring : MonoBehaviour
         Color color = shipColor.GetColor(shipSide);
         spriteRenderer.color = color;
 
-        Material material = trailRenderer.material;
-        material.color = color;
-        trailRenderer.material = material;
+        trailRenderer.endColor = color;
+        trailRenderer.startColor = color;
 
         trailRenderer.enabled = true;
     }
