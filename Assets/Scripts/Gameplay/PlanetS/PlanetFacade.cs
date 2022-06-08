@@ -7,7 +7,7 @@ public class PlanetFacade : MonoBehaviour
 {
     [SerializeField] private PlanetEffectController planetEffectController;
 
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private int planetId = 0;
     private int enemyCount = 0;
@@ -19,11 +19,6 @@ public class PlanetFacade : MonoBehaviour
 
     public event Action<int, int> OnShipValueUpdate;
     public event Action<ShipSide, float> OnPlanetCapture;
-
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     public void Init(int planetId, ShipSide shipSide = ShipSide.None)
     {

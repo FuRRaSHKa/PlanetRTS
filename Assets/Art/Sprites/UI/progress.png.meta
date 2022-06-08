@@ -1,22 +1,16 @@
 fileFormatVersion: 2
-guid: a90bf4fab140bbe498b1454413ff0384
+guid: d161c7864f092804dbfab31a4945a0b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4231354089617786640
-    second: planety_0
+      213: 7201525267301309370
+    second: progress_0
   - first:
-      213: -2687279718088497599
-    second: planety_1
+      213: 8373215148646833053
+    second: progress_1
   - first:
-      213: 5594159484380695858
-    second: planety_2
-  - first:
-      213: 2246307224591069626
-    second: planety_3
-  - first:
-      213: 1044009919554161436
-    second: planety_4
+      213: -3468368421259279120
+    second: progress_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -47,7 +41,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -118,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: planety_0
+      name: progress_0
       rect:
         serializedVersion: 2
-        x: 196
-        y: 329
-        width: 465
-        height: 465
+        x: 12
+        y: 82
+        width: 179
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +126,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f87f69cfd53745c0800000000000000
-      internalID: -4231354089617786640
+      spriteID: abb9e764315f0f360800000000000000
+      internalID: 7201525267301309370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: planety_1
+      name: progress_1
       rect:
         serializedVersion: 2
-        x: 862
-        y: 271
-        width: 498
-        height: 498
+        x: 12
+        y: 65
+        width: 179
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +147,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 146293f855dd4bad0800000000000000
-      internalID: -2687279718088497599
+      spriteID: d9b930380d2a33470800000000000000
+      internalID: 8373215148646833053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: planety_2
+      name: progress_2
       rect:
         serializedVersion: 2
-        x: 1538
-        y: 225
-        width: 836
-        height: 555
+        x: 68
+        y: 23
+        width: 21
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,50 +168,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23dc463796272ad40800000000000000
-      internalID: 5594159484380695858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: planety_3
-      rect:
-        serializedVersion: 2
-        x: 2517
-        y: 228
-        width: 582
-        height: 582
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab1f422f48c7c2f10800000000000000
-      internalID: 2246307224591069626
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: planety_4
-      rect:
-        serializedVersion: 2
-        x: 3231
-        y: 216
-        width: 622
-        height: 621
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c1b820d8d711d7e00800000000000000
-      internalID: 1044009919554161436
+      spriteID: 0f488ac0c41eddfc0800000000000000
+      internalID: -3468368421259279120
       vertices: []
       indices: 
       edges: []
@@ -225,7 +177,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4712a8871ebae6a47beef5a161944422
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

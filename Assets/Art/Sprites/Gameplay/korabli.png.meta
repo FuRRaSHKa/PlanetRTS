@@ -1,0 +1,528 @@
+fileFormatVersion: 2
+guid: dac45d2955a42134eabdf617156ad660
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7041680077202824869
+    second: korabli_0
+  - first:
+      213: 7441838227809719167
+    second: korabli_1
+  - first:
+      213: -7371312288355471570
+    second: korabli_2
+  - first:
+      213: -1622825698218603684
+    second: korabli_3
+  - first:
+      213: 2728992056737589628
+    second: korabli_4
+  - first:
+      213: -5990495830400606517
+    second: korabli_5
+  - first:
+      213: -878046471818302717
+    second: korabli_6
+  - first:
+      213: 6458615893203439263
+    second: korabli_7
+  - first:
+      213: -2317041182786530647
+    second: korabli_8
+  - first:
+      213: 5304963822208003895
+    second: korabli_9
+  - first:
+      213: 75509478658155117
+    second: korabli_10
+  - first:
+      213: -3266655537560511897
+    second: korabli_11
+  - first:
+      213: -2646010968135709695
+    second: korabli_12
+  - first:
+      213: -7147767012715351330
+    second: korabli_13
+  - first:
+      213: 7807959104973174807
+    second: korabli_14
+  - first:
+      213: 3248398202091091757
+    second: korabli_15
+  - first:
+      213: -5136018493592629291
+    second: korabli_16
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: korabli_0
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 1793
+        width: 21
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b516168374de64e90800000000000000
+      internalID: -7041680077202824869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_1
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 1793
+        width: 21
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f73558c8078b64760800000000000000
+      internalID: 7441838227809719167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_2
+      rect:
+        serializedVersion: 2
+        x: 1881
+        y: 1785
+        width: 21
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2fa9145786d3b990800000000000000
+      internalID: -7371312288355471570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_3
+      rect:
+        serializedVersion: 2
+        x: 1961
+        y: 1801
+        width: 31
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b0e4520a09a79e0800000000000000
+      internalID: -1622825698218603684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_4
+      rect:
+        serializedVersion: 2
+        x: 2049
+        y: 1785
+        width: 21
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c79e4b811d35fd520800000000000000
+      internalID: 2728992056737589628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_5
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1465
+        width: 39
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bce538008cb7ddca0800000000000000
+      internalID: -5990495830400606517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_6
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 1604
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b2cfec26d80d3f0800000000000000
+      internalID: -878046471818302717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_7
+      rect:
+        serializedVersion: 2
+        x: 1223
+        y: 1469
+        width: 39
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9e45178fec91a950800000000000000
+      internalID: 6458615893203439263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_8
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 1604
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2de0a025738dfd0800000000000000
+      internalID: -2317041182786530647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_9
+      rect:
+        serializedVersion: 2
+        x: 1781
+        y: 1596
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73fa1094d740f9940800000000000000
+      internalID: 5304963822208003895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_10
+      rect:
+        serializedVersion: 2
+        x: 1822
+        y: 1596
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d62289488734c0100800000000000000
+      internalID: 75509478658155117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_11
+      rect:
+        serializedVersion: 2
+        x: 1959
+        y: 1455
+        width: 39
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76a942898128aa2d0800000000000000
+      internalID: -3266655537560511897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_12
+      rect:
+        serializedVersion: 2
+        x: 2115
+        y: 1596
+        width: 14
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ccb7c2b0b774bd0800000000000000
+      internalID: -2646010968135709695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_13
+      rect:
+        serializedVersion: 2
+        x: 2148
+        y: 1596
+        width: 22
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed2b8ddb5c70ecc90800000000000000
+      internalID: -7147767012715351330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_14
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 645
+        width: 478
+        height: 712
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 718f3b800717b5c60800000000000000
+      internalID: 7807959104973174807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_15
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 643
+        width: 477
+        height: 712
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2738ac34f0a41d20800000000000000
+      internalID: 3248398202091091757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: korabli_16
+      rect:
+        serializedVersion: 2
+        x: 1762
+        y: 635
+        width: 476
+        height: 713
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5df0391546239b8b0800000000000000
+      internalID: -5136018493592629291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

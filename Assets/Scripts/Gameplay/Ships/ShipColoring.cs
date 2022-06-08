@@ -22,6 +22,7 @@ public class ShipColoring : MonoBehaviour
 
     private void OnDisable()
     {
+        trailRenderer.Clear();
         trailRenderer.enabled = false;
     }
 }
