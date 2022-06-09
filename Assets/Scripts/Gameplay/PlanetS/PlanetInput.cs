@@ -36,6 +36,7 @@ public class PlanetInput : MonoBehaviour
 
         cursorPos.x = cam.pixelWidth / 2;
         cursorPos.y = cam.pixelWidth / 2;
+        firstCursorPos = cursorPos;
     }
 
     private void GameStarted()

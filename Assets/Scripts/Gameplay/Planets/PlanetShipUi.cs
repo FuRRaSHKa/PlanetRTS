@@ -24,6 +24,8 @@ public class PlanetShipUi : MonoBehaviour
 
         enemyText.color = shipColorData.GetColor(ShipSide.Enemy);
         playerText.color = shipColorData.GetColor(ShipSide.Player);
+        enemyProgressImage.color = shipColorData.GetColor(ShipSide.Enemy);
+        playerProgressImage.color = shipColorData.GetColor(ShipSide.Player);
         DisableCapturedUI();
         DisableContestUI();
 
